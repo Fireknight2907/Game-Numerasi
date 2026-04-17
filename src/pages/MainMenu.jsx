@@ -118,13 +118,13 @@ function MainMenu({ onStart }) {
 
   const TitleBlock = ({ showSubtitle = true }) => (
     <div className="text-center px-4">
-      <h1 className="text-xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-extrabold tracking-widest 
-      whitespace-nowrap -mt-30 text-shadow-lg text-shadow-black">
+      <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold tracking-widest 
+      whitespace-normal sm:whitespace-nowrap -mt-6 sm:-mt-10 text-shadow-lg text-shadow-black">
         PERMAINAN NUMERASI
       </h1>
       {showSubtitle && (
-        <p className="text-sm sm:text-lg md:text-2xl lg:text-3xl mt-2 tracking-widest">
-          SDN 88 manado
+        <p className="text-base sm:text-lg md:text-2xl lg:text-3xl mt-2 tracking-widest">
+          SDN 88 MANADO
         </p>
       )}
     </div>
@@ -158,19 +158,19 @@ function MainMenu({ onStart }) {
           <div className="w-full max-w-md md:max-w-3xl lg:max-w-5xl xl:max-w-7xl flex flex-col items-center justify-between h-full">
 
             {/* LOGO */}
-            <div className="flex justify-between items-center px-4">
-              <img src={logoDela} className="w-12 sm:w-14 md:w-22 lg:w-30 object-contain -ml-70 mt-5" />
-              <img src={logoSD} className="w-16 sm:w-24 md:w-32 lg:w-40 object-contain ml-290 mt-5" />
+            <div className="flex justify-between items-center w-full px-4 sm:px-12 mt-5">
+              <img src={logoDela} className="w-16 sm:w-20 md:w-22 lg:w-30 object-contain" />
+              <img src={logoSD} className="w-20 sm:w-24 md:w-32 lg:w-40 object-contain" />
             </div>
 
             {/* TITLE */}
-            <div className="mt-10">
+            <div className="mt-8 sm:mt-10 w-full">
               <TitleBlock />
             </div>
 
             {/* CONTENT */}
-            <div className="flex flex-col items-center gap-4 w-full mt-40">
-              <img src={mikir} className="absolute w-12 sm:w-18 md:w-22 lg:w-21 -ml-78 -mt-12  " />
+            <div className="flex flex-col items-center gap-4 w-full mt-24 mb-10 px-4 relative">
+              <img src={mikir} className="absolute w-24 sm:w-32 -top-20 sm:-top-28 left-4 sm:left-10 drop-shadow-xl" />
 
               <button
                 onClick={() => navigateTo('SPLASH')}
@@ -213,38 +213,39 @@ function MainMenu({ onStart }) {
         gap-6'
         >
 
-          <div className="w-150 lg:max-w-4xl flex flex-col items-center 
-        gap-6 mt-40 ">
+          <div className="w-full max-w-4xl flex flex-col items-center 
+        gap-6 mt-16 px-4 pb-20">
             <TitleBlock />
 
-            <div className='w-full max-w-md md:max-w-4xl lg:max-w-xs flex flex-col items-center gap-6 mt-25'>
+            <div className='w-full max-w-sm sm:max-w-md flex flex-col items-center gap-4 sm:gap-6 mt-10'>
 
-              <button onClick={() => navigateTo('CLASS_SELECT')} className="w-full md:w-2xs py-3  rounded-xl 
-          bg-gray-300 font-extrabold! text-2xl text-black 
+              <button onClick={() => navigateTo('CLASS_SELECT')} className="w-full py-4 rounded-xl 
+          bg-gray-300 font-extrabold! text-xl sm:text-2xl text-black 
           shadow-amber-50 transition duration-300 hover:shadow-lg hover:-translate-y-1">
                 <span>PILIH KELAS</span>
-                {!isClassSelected && <span className="text-red-500 text-3xl">⚠️</span>}
+                {!isClassSelected && <span className="text-red-500 text-3xl ml-2">⚠️</span>}
               </button>
 
-              <button onClick={() => navigateTo('TOPIC_SELECT')} className="w-full md:w-2xs py-3 rounded-xl 
-          bg-gray-300 font-extrabold! text-2xl text-black 
+              <button onClick={() => navigateTo('TOPIC_SELECT')} className="w-full py-4 rounded-xl 
+          bg-gray-300 font-extrabold! text-xl sm:text-2xl text-black 
           shadow-amber-50 transition duration-300 hover:shadow-lg hover:-translate-y-1">
                 <span>TOPIK MATERI</span>
-                {!isTopicSelected && <span className="text-red-500 text-3xl">⚠️</span>}
+                {!isTopicSelected && <span className="text-red-500 text-3xl ml-2">⚠️</span>}
               </button>
 
-              <button onClick={() => navigateTo('MODE_SELECT')} className="w-full md:w-2xs py-3 rounded-xl 
-          bg-gray-300 font-extrabold! text-2xl text-black -mb-25 shadow-amber-50 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+              <button onClick={() => navigateTo('MODE_SELECT')} className="w-full py-4 rounded-xl 
+          bg-gray-300 font-extrabold! text-xl sm:text-2xl text-black shadow-amber-50 transition duration-300 hover:shadow-lg hover:-translate-y-1">
                 <span>MODE GAME</span>
-                {!isModeSelected && <span className="text-red-500 text-3xl">⚠️</span>}
+                {!isModeSelected && <span className="text-red-500 text-3xl ml-2">⚠️</span>}
               </button>
             </div>
-            <div className='w-full max-w-md md:max-w-2xl lg:max-w-4xl flex flex-col items-center gap-2 mt-30'>
+            
+            <div className='w-full max-w-xs sm:max-w-sm flex flex-col items-center gap-2 mt-10'>
               <button
                 onClick={handleStart}
                 disabled={!isFormComplete}
-                className={`relative px-32 py-4 rounded-2xl 
-            bg-yellow-300 text-black text-2xl font-bold
+                className={`relative w-full py-4 rounded-2xl 
+            bg-yellow-300 text-black text-xl sm:text-2xl font-bold
               transition-all duration-300
               hover:shadow-lg hover:shadow-white/80
               hover:translate-y-1
@@ -254,8 +255,6 @@ function MainMenu({ onStart }) {
                 'bg-gray-400 text-gray-700 opacity-50 cursor-not-allowed'}`}
               >
                 <span className="relative z-0">MULAI BERMAIN</span>
-
-                
               </button>
             </div>
           </div>
@@ -357,36 +356,27 @@ function MainMenu({ onStart }) {
 
       {/* ================= INSTRUCTIONS ================= */}
       {screen === 'INSTRUCTIONS' && (
-        <div className="w-full max-w-md md:max-w-2xl lg:max-w-4xl flex flex-col 
-        items-center gap-6 mt-45 -mb-10 text-center">
+        <div className="w-full max-w-4xl flex flex-col px-4 items-center gap-6 mt-16 sm:mt-10 pb-10 text-center">
           <TitleBlock />
-          <div className='text-center w-full max-w-md -mb-25 -mt-4 flex flex-col items-center'>
-            <h3 className='mt-10 font-bold text-xl text-black bg-[#a6a6a6] rounded-lg py-2 max-w-full w-70'>
-              PETUNJUK BERMAIN
-            </h3>
-          </div>
+          
+          <h3 className='mt-5 font-bold text-lg sm:text-xl text-black bg-[#a6a6a6] rounded-lg py-2 w-full max-w-sm'>
+            PETUNJUK BERMAIN
+          </h3>
 
-          <div className='max-w-3xl bg-[#a6a6a6] rounded-2xl p-10 h-60 w-1000 mt-25 shadow-black shadow-2xl'>
-            <div className='flex flex-col justify-center ml-5 '>
-              <img src={P1} alt="Petunjuk 1" className='w-44 h-46 -ml-10 -mt-4.5' />
-              <img src={P2} alt="Petunjuk 2" className='w-44 h-45 ml-35 -mt-45.5' />
-              <img src={P3} alt="Petunjuk 3" className='w-44 h-43.5 ml-80 -mt-43.5' />
-              <img src={P4} alt="Petunjuk 4" className='w-44 h-44 ml-124 -mt-43.5' />
-
+          <div className='w-full max-w-2xl sm:max-w-4xl bg-[#a6a6a6] rounded-2xl p-4 sm:p-10 shadow-black shadow-2xl flex items-center justify-center'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 justify-items-center w-full'>
+              <img src={P1} alt="Petunjuk 1" className='w-28 sm:w-44 object-contain shadow-lg rounded-xl' />
+              <img src={P2} alt="Petunjuk 2" className='w-28 sm:w-44 object-contain shadow-lg rounded-xl' />
+              <img src={P3} alt="Petunjuk 3" className='w-28 sm:w-44 object-contain shadow-lg rounded-xl' />
+              <img src={P4} alt="Petunjuk 4" className='w-28 sm:w-44 object-contain shadow-lg rounded-xl' />
             </div>
-
           </div>
-          <div className='mb-10 mt-10'>
-            <button onClick={() => navigateTo('HOME')} className="py-5 w-60 bg-yellow-300 text-black 
-            rounded-xl font-bold text-3xl transition duration-150 shadow-lg hover:shadow-amber-100 hover:-translate-y-1">
+          
+          <button onClick={() => navigateTo('HOME')} className="py-4 mt-6 w-full max-w-sm bg-yellow-300 text-black 
+            rounded-xl font-bold text-2xl sm:text-3xl transition duration-150 shadow-lg hover:shadow-amber-100 hover:-translate-y-1">
               KEMBALI
-            </button>
-          </div>
-
-
-
+          </button>
         </div>
-
       )}
 
       {/* ================= ADMIN LOGIN ================= */}
