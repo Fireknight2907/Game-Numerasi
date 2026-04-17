@@ -105,7 +105,7 @@ export class SoalAritmatika extends Soal {
 
         const a2Str = this.angka2 < 0 ? `(${this.angka2})` : `${this.angka2}`;
         
-        const canBeVisual = klsl <= 2 && (op === '+' || op === '-') && this.angka1 > 0 && this.angka2 > 0 && this.angka1 <= 10 && this.angka2 <= 10;
+        const canBeVisual = klsl <= 2 && (op === '+' || op === '-') && this.angka1 > 0 && this.angka2 > 0 && this.angka1 <= 5 && this.angka2 <= 5;
         const useVisual = canBeVisual && Math.random() > 0.5;
 
         if (useVisual) {
