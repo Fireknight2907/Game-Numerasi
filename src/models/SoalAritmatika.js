@@ -47,12 +47,29 @@ export class SoalAritmatika extends Soal {
             const B = getRandomInt(1, 10);
             const C = getRandomInt(1, 10);
             const A = getRandomInt(1, 20);
-            if (getRandomInt(0, 1) === 0) {
+            const type = getRandomInt(0, 3);
+            
+            // Logika Matematika sesuai kaidah: Kali / Bagi lebih dulu sebelum Tambah / Kurang
+            if (type === 0) {
                 this.teksSoal = `${A} + ${B} × ${C}`;
-                this.kunciJawaban = (A + B * C).toString();
-            } else {
+                this.kunciJawaban = (A + (B * C)).toString();
+            } else if (type === 1) {
                 this.teksSoal = `${B} × ${C} - ${A}`;
-                this.kunciJawaban = (B * C - A).toString();
+                this.kunciJawaban = ((B * C) - A).toString();
+            } else if (type === 2) {
+                // Pastikan pembagian bulat tidak bersisa
+                const divisor = getRandomInt(2, 10);
+                const hasilBagi = getRandomInt(2, 10);
+                const dividend = divisor * hasilBagi;
+                this.teksSoal = `${A} + ${dividend} ÷ ${divisor}`;
+                this.kunciJawaban = (A + hasilBagi).toString();
+            } else {
+                const divisor = getRandomInt(2, 10);
+                const hasilBagi = getRandomInt(2, 10);
+                const dividend = divisor * hasilBagi;
+                let numA = getRandomInt(1, hasilBagi); // Agar tidak negatif jika diset pengurang
+                this.teksSoal = `${dividend} ÷ ${divisor} - ${numA}`;
+                this.kunciJawaban = (hasilBagi - numA).toString();
             }
             return;
         }

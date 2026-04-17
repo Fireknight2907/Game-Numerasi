@@ -119,7 +119,10 @@ function ResultScreen({ result, onPlayAgain }) {
         {/* Avatar Section */}
         {!isTimeAttack && (
           <div className="flex flex-col relative md:absolute items-center justify-center z-10 mt-4 md:mt-90 md:-right-40">
-            <div className={`flex flex-col items-center justify-center transition-transform duration-500 hover:scale-110 ${isCheetah ? 'animate-bounce' : ''}`}>
+            <div className={`flex flex-col items-center justify-center transition-transform duration-500 hover:scale-110 
+              ${animal === 'Flash' ? 'animate-bounce' : 
+                animal === 'Kelinci' ? 'animate-[bounce_2s_infinite]' : 
+                'animate-[pulse_3s_ease-in-out_infinite]'}`}>
               <img
               src={imageFlash}
               alt={animal}
