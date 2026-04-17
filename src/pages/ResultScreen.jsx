@@ -3,6 +3,7 @@ import { EnumModePermainan } from '../models/Enums';
 import flash from '../assets/flash.png';
 import kelinciImg from '../assets/kelinci.png';
 import kuraKuraImg from '../assets/kura_kura.png';
+import hooraySound from '../assets/hooray.mp3';
 import { getAdminConfig } from '../utils/adminConfig';
 
 function ResultScreen({ result, onPlayAgain }) {
@@ -63,6 +64,7 @@ function ResultScreen({ result, onPlayAgain }) {
 
   return (
 <div className="w-full min-h-screen flex flex-col relative">
+  <audio src={hooraySound} autoPlay />
   <div className="fixed inset-0 bg-hore z-10 animate-win-down rotate-180"></div>
   <div className='absolute top-0 left-0 w-full h-full -z-10'></div>
   <div className="relative z-10 flex flex-col items-center pt-10 px-4">

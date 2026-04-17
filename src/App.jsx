@@ -44,7 +44,7 @@ function App() {
   };
 
   return (
-    <div className="w-full max-w-[500px] md:max-w-4xl mx-auto h-full min-h-screen flex flex-col justify-center"> 
+    <div className="w-full max-w-[500px] md:max-w-4xl mx-auto h-full min-h-screen flex flex-col pt-4"> 
       <audio id="bgm" src={bgMusic} autoPlay loop />
       {currentScreen === 'MAIN_MENU' && <MainMenu onStart={startGame} />}
       {currentScreen === 'GAME' && <GameScreen config={gameConfig} onEnd={endGame} onCancel={goToMainMenu} />}

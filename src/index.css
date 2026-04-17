@@ -4,11 +4,11 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
+  min-height: 100svh;
   background: linear-gradient(135deg, #442a78 0%, #2f1c54 50%, #1e1136 100%);
   color: #fff;
   font-family: 'Unbounded', monospace;
-  overflow: hidden; /* BUKAN overflow hidden */
+  overflow-x: hidden;
   text-shadow: 1px 1px 0 #000;
 }
 
