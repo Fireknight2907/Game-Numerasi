@@ -114,12 +114,12 @@ function ResultScreen({ result, onPlayAgain }) {
 
         {/* Avatar Section */}
         {!isTimeAttack && (
-          <div className="flex flex-col absolute items-center justify-center z-10 mt-90 -right-40">
+          <div className="flex flex-col relative md:absolute items-center justify-center z-10 mt-4 md:mt-90 md:-right-40">
             <div className={`flex flex-col items-center justify-center transition-transform duration-500 hover:scale-110 ${isCheetah ? 'animate-bounce' : ''}`}>
               <img
               src={imageFlash}
               alt={animal}
-              className="w-32 sm:w-40 md:w-48 drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)] mb-2"/>
+              className="w-24 sm:w-40 md:w-48 drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)] mb-2"/>
               <span className={`font-black tracking-widest text-3xl sm:text-5xl uppercase ${isCheetah ? 'text-yellow-400' : 'text-white'}`}
                 style={{
                   textShadow: `
@@ -144,17 +144,17 @@ function ResultScreen({ result, onPlayAgain }) {
         )}
       </div>
 
-      <div className="flex flex-col items-center gap-4 w-full mt-40 z-10 px-80">
+      <div className="flex flex-col items-center gap-4 w-full max-w-sm mx-auto mt-10 md:mt-40 z-10 px-4">
         <button
           onClick={reloadGame}
-          className="btn-pixel btn-yellow w-48 py-3 text-2xl sm:text-3xl font-extrabold! h-16 sm:h-18 text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
+          className="btn-pixel btn-yellow w-full md:w-48 py-3 text-2xl sm:text-3xl font-extrabold! h-16 sm:h-18 text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
           style={{ textShadow: "none" }}
         >
           SELESAI
         </button>
         <button
           onClick={onPlayAgain}
-          className="btn-pixel btn-yellow w-55 py-5 text-3xl sm:text-4xl text-black font-extrabold! tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black"
+          className="btn-pixel btn-yellow w-full md:w-55 py-5 text-3xl sm:text-4xl text-black font-extrabold! tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black"
           style={{ textShadow: "none" }}
         >
           MULAI LAGI

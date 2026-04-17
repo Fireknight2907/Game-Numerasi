@@ -194,7 +194,7 @@ function MainMenu({ onStart }) {
               </p>
             </div>
             
-            <button onClick={() => navigateTo('ADMIN_LOGIN')} className="fixed bottom-4 right-4 text-gray-500 opacity-30 hover:opacity-100 z-50 transition duration-300">
+            <button onClick={() => navigateTo('ADMIN_LOGIN')} className="fixed bottom-10 right-4 sm:bottom-4 sm:right-4 text-gray-500 bg-white/30 sm:bg-transparent rounded-full p-2 opacity-60 sm:opacity-30 hover:opacity-100 z-50 transition duration-300">
               <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287-.947c.886.54 2.042.061 2.287-.947 1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" /></svg>
             </button>
           </div>
@@ -429,7 +429,7 @@ function MainMenu({ onStart }) {
 
       {/* ================= ADMIN PANEL ================= */}
       {screen === 'ADMIN_PANEL' && (
-        <div className="w-full max-w-md md:max-w-4xl lg:max-w-5xl flex flex-col items-center gap-4 mt-5 pb-10 overflow-y-auto">
+        <div className="w-full max-w-md md:max-w-4xl lg:max-w-5xl flex flex-col items-center gap-4 py-8 pb-32 mb-10 h-full overflow-y-auto">
           <TitleBlock showSubtitle={false} />
 
           <div className="w-11/12 md:w-full bg-[#D9D9D9] text-black p-6 rounded-3xl shadow-xl flex flex-col items-center border-[6px] border-white">
