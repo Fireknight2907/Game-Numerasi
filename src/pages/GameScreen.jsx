@@ -182,11 +182,11 @@ function GameScreen({ config, onEnd, onCancel }) {
                     </div>
 
                         {/* The Gray Question Card */}
-                        <div className="w-full bg-[#D9D9D9] rounded-2xl border-[4px] sm:border-[6px] border-white 
+                        <div className="w-[95%] bg-[#D9D9D9] rounded-2xl border-[4px] sm:border-[6px] border-white 
                         shadow-[0_6px_0_#9e9e9e] sm:shadow-[0_10px_0_#9e9e9e] p-2 sm:p-3 flex 
-                        items-center justify-center mb-6 sm:mb-5 relative min-h-[80px] md:min-h-30 w-full max-w-[400px]">
+                        items-center justify-center mb-6 sm:mb-5 relative min-h-[80px] md:min-h-30 max-w-[400px]">
                             <h3 className={`text-black font-black tracking-tight sm:tracking-widest text-shadow-none 
-                                text-center leading-none whitespace-nowrap
+                                text-center leading-tight whitespace-pre-wrap break-words w-full
                                 ${currentQ.teksSoal.length > 30 ? 'text-[4vw] sm:text-xl' : 
                                 currentQ.teksSoal.length > 20 ? 'text-[5.5vw] sm:text-2xl' : 
                                 currentQ.teksSoal.length > 10 ? 'text-[7vw] sm:text-4xl' : 

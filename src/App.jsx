@@ -34,11 +34,13 @@ const MobileScaler = ({ children }) => {
     <div style={{ width: '100vw', minHeight: '100vh', overflow: 'hidden' }}>
       <div style={{
         width: '480px',
+        maxWidth: '480px',
         minHeight: `${scaleInfo.vHeight}px`,
         transform: `scale(${scaleInfo.scale})`,
         transformOrigin: 'top left',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        overflow: 'hidden'
       }}>
         {children}
       </div>
