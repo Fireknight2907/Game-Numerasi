@@ -12,8 +12,8 @@ const DEFAULT_CONFIG = {
   timers: {
     TIMER: 2, // dalam menit
     STOPWATCH: 20, // jumlah soal untuk waktu tercepat
-    RATING_FAST_SEC: 60, // 1 menit (sesuai request)
-    RATING_MEDIUM_SEC: 90
+    RATING_FAST_SEC: 120, // 2 menit (Flash jika <= 2 menit)
+    RATING_MEDIUM_SEC: 240 // 4 menit (Kelinci jika <= 4 menit, lebih = Kura-kura)
   }
 };
 

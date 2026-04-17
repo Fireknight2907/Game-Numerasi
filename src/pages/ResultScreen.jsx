@@ -1,6 +1,8 @@
 import React from 'react';
 import { EnumModePermainan } from '../models/Enums';
 import flash from '../assets/flash.png';
+import kelinciImg from '../assets/kelinci.png';
+import kuraKuraImg from '../assets/kura_kura.png';
 import { getAdminConfig } from '../utils/adminConfig';
 
 function ResultScreen({ result, onPlayAgain }) {
@@ -24,26 +26,26 @@ function ResultScreen({ result, onPlayAgain }) {
           imageFlash = flash; 
           isCheetah = true;
       } else if (correctAnswers >= 15) {
-          animal = 'Flash'; 
-          imageFlash = flash;
+          animal = 'Kelinci'; 
+          imageFlash = kelinciImg;
       } else {
-          animal = 'Flash'; 
-          imageFlash = flash;
+          animal = 'Kura - Kura'; 
+          imageFlash = kuraKuraImg;
       }
   } else {
-      const fastSec = adminConfig.timers?.RATING_FAST_SEC || 60;
-      const mediumSec = adminConfig.timers?.RATING_MEDIUM_SEC || 90;
+      const fastSec = adminConfig.timers?.RATING_FAST_SEC || 120;
+      const mediumSec = adminConfig.timers?.RATING_MEDIUM_SEC || 240;
 
       if (timeSpent <= fastSec) {
           animal = 'Flash'; 
           imageFlash = flash; 
           isCheetah = true;
       } else if (timeSpent <= mediumSec) {
-          animal = 'Flash'; 
-          imageFlash = flash;
+          animal = 'Kelinci'; 
+          imageFlash = kelinciImg;
       } else {
-          animal = 'Flash';
-          imageFlash = flash;
+          animal = 'Kura - Kura';
+          imageFlash = kuraKuraImg;
       }
   }
 

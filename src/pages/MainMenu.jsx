@@ -502,7 +502,7 @@ function MainMenu({ onStart }) {
                   />
 
                   <span className="font-bold text-lg mb-2">Batas Waktu Flash Cepat Animasi (Detik)</span>
-                  <p className="text-sm text-gray-600 mb-3 leading-tight">Jika siswa menyelesaikan Waktu Tercepat dalam jumlah detik di bawah batas ini, akan muncul piala "Sangat Cepat!".</p>
+                  <p className="text-sm text-gray-600 mb-3 leading-tight">Jika siswa menyelesaikan Waktu Tercepat dalam jumlah detik di bawah batas ini, akan muncul piala "Flash" (Default: 120 detik / 2 menit).</p>
                   <input 
                     type="number" 
                     min="1"
@@ -518,7 +518,7 @@ function MainMenu({ onStart }) {
                   />
 
                   <span className="font-bold text-lg mb-2">Batas Rata-Rata Animasi (Detik)</span>
-                  <p className="text-sm text-gray-600 mb-3 leading-tight">Batas waktu untuk level standar (tidak sangat cepat, tapi tetap dinilai baik).</p>
+                  <p className="text-sm text-gray-600 mb-3 leading-tight">Jika di bawah batas ini akan diberi label Kelinci, jika di atas batas ini akan diberi Kura-Kura (Default: 240 detik / 4 menit).</p>
                   <input 
                     type="number" 
                     min="1"
