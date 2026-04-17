@@ -12,7 +12,8 @@ const MobileScaler = ({ children }) => {
       const width = window.innerWidth;
       const height = window.innerHeight;
       if (width < 768) {
-        const calculateScale = width / 768;
+        const TARGET_WIDTH = 480;
+        const calculateScale = width / TARGET_WIDTH;
         setScaleInfo({
           isMobile: true,
           scale: calculateScale,
@@ -32,7 +33,7 @@ const MobileScaler = ({ children }) => {
   return (
     <div style={{ width: '100vw', minHeight: '100vh', overflow: 'hidden' }}>
       <div style={{
-        width: '768px',
+        width: '480px',
         minHeight: `${scaleInfo.vHeight}px`,
         transform: `scale(${scaleInfo.scale})`,
         transformOrigin: 'top left',

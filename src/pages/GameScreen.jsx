@@ -3,6 +3,8 @@ import { EnumModePermainan, EnumOperasi } from '../models/Enums';
 import { Permainan } from '../models/Permainan';
 import { getAdminConfig } from '../utils/adminConfig';
 
+import mikirJawab from '../assets/mikirjawab.png';
+
 function GameScreen({ config, onEnd, onCancel }) {
     const engineRef = useRef(null);
     
@@ -137,7 +139,7 @@ function GameScreen({ config, onEnd, onCancel }) {
     const modeName = isTimeAttack ? 'BATAS WAKTU' : 'WAKTU TERCEPAT';
 
     return (
-        <div className="w-full min-h-screen overflow-y-auto overflow-x-hidden \
+        <div className="w-full h-full overflow-y-auto overflow-x-hidden \
         flex flex-col pt-4 sm:pt-8 px-4 sm:px-12 pb-4 sm:pb-6 max-w-6xl mx-auto">
             {/* Header Black Capsule */}
             <div className="w-full flex justify-between items-center mb-3 sm:mb-8 z-10 shrink-0">
@@ -160,14 +162,14 @@ function GameScreen({ config, onEnd, onCancel }) {
             </div>
 
             {/* Main Split Layout */}
-            <div className="w-full flex-1 flex flex-col md:flex-row gap-4 
-            sm:gap-8 items-center">
+            <div className="w-full flex-1 flex flex-col md:flex-row gap-2 
+            sm:gap-8 items-center pb-4">
                 {/* Left: Illustration */}
-                <div className=" md:w-[40%] flex justify-center items-end hidden 
-                sm:flex h-[250px] w-[120] shrink drop-shadow-[0_20px_20px_rgba(0,0,0,0.6)] 
-                mt-30 ">
-                    <img src="/src/assets/gemini.png" alt="Belajar" 
-                    className="w-70 h-70 object-contain" />
+                <div className="w-full md:w-[40%] flex justify-center items-end 
+                flex h-[150px] sm:h-[250px] shrink drop-shadow-[0_20px_20px_rgba(0,0,0,0.6)] 
+                mt-2 sm:mt-30">
+                    <img src={mikirJawab} alt="Belajar" 
+                    className="w-40 sm:w-70 h-40 sm:h-70 object-contain" />
                 </div> 
 
                 {/* Right: Question Box & Numpad */}
