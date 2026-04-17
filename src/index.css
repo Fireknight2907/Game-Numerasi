@@ -1,0 +1,142 @@
+@import 'tailwindcss';
+
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #442a78 0%, #2f1c54 50%, #1e1136 100%);
+  color: #fff;
+  font-family: 'Unbounded', monospace;
+  overflow: hidden; /* BUKAN overflow hidden */
+  text-shadow: 1px 1px 0 #000;
+}
+
+.text-pixel-title {
+  font-family: 'VT323', monospace;
+  text-transform: uppercase;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+  letter-spacing: 4px;
+}
+
+/* Base button */
+.btn-pixel {
+  font-family: 'VT323', monospace;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-weight: 400; /* VT323 is pretty thick normally */
+  text-shadow: none;
+  cursor: pointer;
+  transition: transform 0.05s, box-shadow 0.05s;
+  user-select: none;
+}
+
+.btn-pixel:active {
+  transform: translateY(4px);
+}
+
+/* Gray Button */
+.btn-gray {
+  background-color: var(--color-pixel-gray);
+  color: #d9d9d9;
+  box-shadow: 0px 6px 0px #9e9e9e, 0px 10px 10px rgba(0,0,0,0.2);
+}
+.btn-gray:active {
+  box-shadow: 0px 2px 0px #9e9e9e, 0px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Blue Button */
+.btn-blue {
+  background-color: var(--color-pixel-blue);
+  color: #000;
+  box-shadow: 0px 6px 0px #677bcc, 0px 10px 10px rgba(0,0,0,0.2);
+}
+.btn-blue:active {
+  box-shadow: 0px 2px 0px #677bcc, 0px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Yellow-Green Button */
+.btn-green {
+  background-color: var(--color-pixel-green);
+  color: #000;
+  box-shadow: 0px 6px 0px #9da924, 0px 10px 10px rgba(0,0,0,0.2);
+}
+.btn-green:active {
+  box-shadow: 0px 2px 0px #9da924, 0px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* The dark mode cards */
+.pixel-card-black {
+  background-color: #000;
+  border: 2px solid #555;
+  border-radius: 12px;
+  color: #fff;
+  text-shadow: none;
+}
+
+.bg-hore {
+  background-image: url('/src/assets/hore.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+
+@keyframes winDown {
+  0% {
+    background-position: center 150%;
+    transform: scale(1) rotate(180deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05) rotate(180deg);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    background-position: center -50%;
+    transform: scale(1) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+.animate-win-down {
+  animation: winDown 3s linear infinite;
+  background-size: 100% 200%;
+}
+
+
+@keyframes flame {
+  0% {
+    transform: translateY(0%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #facc15;
+  }
+  50% {
+    text-shadow: 
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 30px #fde047;
+  }
+}
+
+.glow-text {
+  animation: glow 1.5s ease-in-out infinite;
+}
