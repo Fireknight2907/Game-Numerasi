@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { EnumModePermainan, EnumOperasi } from '../models/Enums';
 import { CLASS_CONFIG } from '../utils/levelConfig';
 import logoDela from '../assets/logoDela.png';
-import logoSD from '../assets/logoSD.jpeg';
+import logoSD from '../assets/logoSD.png';
 import mikir from '../assets/mikir.png';
 import P1 from '../assets/P1.png';
 import P2 from '../assets/P2.png';
