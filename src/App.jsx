@@ -14,7 +14,7 @@ function App() {
     const playAudio = () => {
       const audioEl = document.getElementById('bgm');
       if (audioEl) {
-        audioEl.volume = 0.2;
+        audioEl.volume = 0.1;
         audioEl.play().catch(() => {});
       }
       window.removeEventListener('click', playAudio);
@@ -26,7 +26,7 @@ function App() {
   const startGame = (config) => {
     const audioEl = document.getElementById('bgm');
     if (audioEl) {
-      audioEl.volume = 0.2;
+      audioEl.volume = 0.1;
       audioEl.play().catch(() => {});
     }
     setGameConfig(config);
@@ -41,7 +41,7 @@ function App() {
   const goToMainMenu = () => {
     const audioEl = document.getElementById('bgm');
     if (audioEl) {
-      audioEl.volume = 0.2;
+      audioEl.volume = 0.1;
       audioEl.play().catch(() => {});
     }
     setCurrentScreen('MAIN_MENU');
@@ -52,7 +52,7 @@ function App() {
   const replayGame = () => {
     const audioEl = document.getElementById('bgm');
     if (audioEl) {
-      audioEl.volume = 0.2;
+      audioEl.volume = 0.1;
       audioEl.play().catch(() => {});
     }
     setGameResult(null);

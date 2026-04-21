@@ -103,7 +103,7 @@ function ResultScreen({ result, onPlayAgain }) {
         </div>
       </div>
 
-      <div className="flex flex-col w-full max-w-5xl justify-center items-center gap-6 sm:gap-8 relative -mb-13 px-4 pt-6">
+      <div className="flex flex-col w-full max-w-5xl justify-center items-center gap-4 sm:gap-8 relative px-4 pt-6">
         
         <div className="bg-black text-white px-6 py-4 rounded-[35px] font-bold text-lg sm:text-3xl border-4 border-[#333] flex items-center justify-center gap-4 shadow-2xl w-auto z-10 mb-2"> 
           <span className="uppercase whitespace-nowrap text-white">
@@ -127,7 +127,7 @@ function ResultScreen({ result, onPlayAgain }) {
 
         {/* Avatar Section */}
         {!isTimeAttack && (
-          <div className="flex flex-col relative md:absolute items-center justify-center z-10 mt-4 md:mt-90 md:-right-40">
+          <div className="flex flex-col relative md:absolute items-center justify-center z-10 mt-2 md:mt-90 md:-right-40">
             <div className={`flex flex-col items-center justify-center transition-transform duration-500 hover:scale-110 
               ${animal === 'Flash' ? 'animate-bounce' : 
                 animal === 'Kelinci' ? 'animate-[bounce_2s_infinite]' : 
@@ -135,8 +135,8 @@ function ResultScreen({ result, onPlayAgain }) {
               <img
               src={imageFlash}
               alt={animal}
-              className="w-24 sm:w-40 md:w-48 drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)] mb-2"/>
-              <span className={`font-black tracking-widest text-3xl sm:text-5xl uppercase ${isCheetah ? 'text-yellow-400' : 'text-white'}`}
+              className="w-20 sm:w-40 md:w-48 drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)] mb-1"/>
+              <span className={`font-black tracking-widest text-2xl sm:text-5xl uppercase ${isCheetah ? 'text-yellow-400' : 'text-white'}`}
                 style={{
                   textShadow: `
                     -3px -3px 0 black,
@@ -148,19 +148,23 @@ function ResultScreen({ result, onPlayAgain }) {
                 }}>
                 {animal}
               </span>
-              {isCheetah && (
-                <div className="mt-6 bg-[#c5d636] border-4 border-black px-4 py-2 rounded-xl transform -rotate-3 animate-pulse">
-                  <span className="text-black font-black text-xl sm:text-2xl tracking-widest uppercase">
-                    SANGAT CEPAT!
-                  </span>
-                </div>
-              )}
+              <div className={`mt-4 border-[3px] border-black px-3 py-1 rounded-xl transform -rotate-3 animate-pulse ${
+                animal === 'Flash' ? 'bg-[#c5d636]' : 
+                animal === 'Kelinci' ? 'bg-yellow-400' : 
+                'bg-orange-400'
+              }`}>
+                <span className="text-black font-black text-lg sm:text-2xl tracking-widest uppercase">
+                  {animal === 'Flash' ? 'SANGAT CEPAT!' : 
+                   animal === 'Kelinci' ? 'NORMAL' : 
+                   'LAMBAT'}
+                </span>
+              </div>
             </div>
           </div>
         )}
       </div>
 
-      <div className="flex flex-col items-center gap-4 w-full max-w-sm mx-auto mt-10 md:mt-40 z-10 px-4">
+      <div className="flex flex-col items-center gap-4 w-full max-w-sm mx-auto mt-4 md:mt-40 z-10 px-4 pb-10">
         <button
           onClick={reloadGame}
           className="btn-pixel w-full max-w-[280px] py-4 text-lg sm:text-xl font-black text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
