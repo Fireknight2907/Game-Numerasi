@@ -4,6 +4,7 @@ import { Permainan } from '../models/Permainan';
 import { getAdminConfig } from '../utils/adminConfig';
 
 import mikirJawab from '../assets/mikirjawab.png';
+import tenSecSound from '../assets/10 sec.mp3';
 
 function GameScreen({ config, onEnd, onCancel }) {
     const engineRef = useRef(null);
@@ -22,8 +23,13 @@ function GameScreen({ config, onEnd, onCancel }) {
     // time = countdown from timerLimit (Time Attack) or countUp from 0 (Stopwatch)
     const [time, setTime] = useState(isTimeAttack ? timerLimit : 0);
     const timerRef = useRef(null);
+    const tenSecAudioRef = useRef(new Audio(tenSecSound));
 
     useEffect(() => {
+        // Ensure BGM plays when game starts again
+        const bgm = document.getElementById('bgm');
+        if (bgm) bgm.play().catch(e => console.log('Audio warn:', e));
+
         // 1. Instansiasi Class Engine (Composition OOP)
         engineRef.current = new Permainan(config.selectedClass.toString(), config.mode, config.selectedTopics);
         const firstQ = engineRef.current.buatSoalBerikutnya();
@@ -34,18 +40,30 @@ function GameScreen({ config, onEnd, onCancel }) {
         timerRef.current = setInterval(() => {
             setTime(prev => {
                 if (isTimeAttack) {
+                    const nextTime = prev - 1;
+                    if (nextTime === 10) {
+                        tenSecAudioRef.current.play().catch(e => console.log('Audio error:', e));
+                        const bgm = document.getElementById('bgm');
+                        if (bgm) bgm.pause();
+                    }
                     if (prev <= 1) {
                         endGameHandler();
                         return 0;
                     }
-                    return prev - 1;
+                    return nextTime;
                 } else {
                     return prev + 1;
                 }
             });
         }, 1000);
 
-        return () => clearInterval(timerRef.current);
+        return () => {
+            clearInterval(timerRef.current);
+            if (tenSecAudioRef.current) {
+                tenSecAudioRef.current.pause();
+                tenSecAudioRef.current.currentTime = 0;
+            }
+        };
     }, []);
 
     const endGameHandler = () => {
@@ -66,6 +84,57 @@ function GameScreen({ config, onEnd, onCancel }) {
 
     const currentTimeRef = useRef(time);
     useEffect(() => { currentTimeRef.current = time; }, [time]);
+
+    // Fitur text-to-speech pakai API bawaan dengan fallback yang lebih presisi
+    useEffect(() => {
+        if (currentQ && (config.selectedClass.toString() === '1' || config.selectedClass.toString() === '2')) {
+            window.speechSynthesis.cancel();
+            
+            let textToRead = currentQ.teksSoal;
+            textToRead = textToRead.replace(/\+/g, ' ditambah ');
+            textToRead = textToRead.replace(/-/g, ' dikurang ');
+            textToRead = textToRead.replace(/x/ig, ' dikali ');
+            textToRead = textToRead.replace(/:/g, ' dibagi ');
+            textToRead += ' sama dengan berapa?';
+
+            const playVoice = () => {
+                const msg = new SpeechSynthesisUtterance(textToRead);
+                msg.lang = 'id-ID';
+                msg.rate = 0.85; 
+
+                const voices = window.speechSynthesis.getVoices();
+                // Utamakan mencari yang namanya mengandung kata 'indonesia'
+                const idVoice = voices.find(v => 
+                    v.name.toLowerCase().includes('indonesi') || 
+                    v.lang.toLowerCase().startsWith('id')
+                );
+                
+                if (idVoice) {
+                    msg.voice = idVoice;
+                }
+
+                window.speechSynthesis.speak(msg);
+            };
+
+            // Di Chrome, getVoices() sering mereturn array kosong pada awal load
+            let voices = window.speechSynthesis.getVoices();
+            if (voices.length === 0) {
+                // Jangan panggil speak dulu, tunggu daftar voices siap
+                const onVoicesReady = () => {
+                    playVoice();
+                    window.speechSynthesis.removeEventListener('voiceschanged', onVoicesReady);
+                };
+                window.speechSynthesis.addEventListener('voiceschanged', onVoicesReady);
+            } else {
+                // Jika sudah siap
+                playVoice();
+            }
+        }
+        
+        return () => {
+            window.speechSynthesis.cancel();
+        }
+    }, [currentQ, config.selectedClass]);
 
     const handleKeyPress = (val) => {
         if (val === 'DEL') {
@@ -148,8 +217,8 @@ function GameScreen({ config, onEnd, onCancel }) {
                 gap-2 sm:gap-4 shadow-xl ">
                     <span className="uppercase whitespace-nowrap">{modeName}</span>
                     <span className="opacity-50 hidden sm:inline">|</span>
-                    <span className="tracking-widest flex items-center whitespace-nowrap">
-                        <svg className="w-4 h-4 sm:w-6 sm:h-6 mr-1 sm:mr-2 inline-block" 
+                    <span className={`tracking-widest flex items-center whitespace-nowrap ${(isTimeAttack && time <= 10) ? 'animate-pulse text-red-500' : ''}`}>
+                        <svg className={`w-4 h-4 sm:w-6 sm:h-6 mr-1 sm:mr-2 inline-block ${(isTimeAttack && time <= 10) ? 'text-red-500' : ''}`} 
                         fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" 
                         strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>

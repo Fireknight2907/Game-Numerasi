@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EnumModePermainan, EnumOperasi } from '../models/Enums';
 import { CLASS_CONFIG } from '../utils/levelConfig';
 import logoDela from '../assets/logoDela.png';
-import logoSD from '../assets/logoSD.png';
+import logoSD from '../assets/logoSD.jpeg';
 import mikir from '../assets/mikir.png';
 import P1 from '../assets/P1.png';
 import P2 from '../assets/P2.png';
@@ -15,6 +15,11 @@ import { getAdminConfig, saveAdminConfig } from '../utils/adminConfig';
 function MainMenu({ onStart }) {
   const [screen, setScreen] = useState('HOME');
   const [history, setHistory] = useState(['HOME']);
+
+  useEffect(() => {
+    const bgm = document.getElementById('bgm');
+    if (bgm) bgm.play().catch(e => console.log('Audio warn:', e));
+  }, []);
 
   const [selectedClass, setSelectedClass] = useState(null);
   const [selectedTopics, setSelectedTopics] = useState([]);
@@ -43,7 +48,7 @@ function MainMenu({ onStart }) {
     navigateTo('HOME');
   };
 
-  const isFormComplete = selectedClass !== null && selectedTopics.length > 0 && mode !=null;
+  const isFormComplete = selectedClass !== null && selectedTopics.length > 0 && mode != null;
 
   const isClassSelected = selectedClass !== null;
   const isTopicSelected = selectedTopics.length > 0;
@@ -193,7 +198,7 @@ function MainMenu({ onStart }) {
                 Ayo latih kemampuan berhitungmu!
               </p>
             </div>
-            
+
             <button onClick={() => navigateTo('ADMIN_LOGIN')} className="fixed bottom-10 right-4 sm:bottom-4 sm:right-4 text-gray-500 bg-white/30 sm:bg-transparent rounded-full p-2 opacity-60 sm:opacity-30 hover:opacity-100 z-50 transition duration-300">
               <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287-.947c.886.54 2.042.061 2.287-.947 1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" /></svg>
             </button>
@@ -239,7 +244,7 @@ function MainMenu({ onStart }) {
                 {!isModeSelected && <span className="text-red-500 text-3xl ml-2">⚠️</span>}
               </button>
             </div>
-            
+
             <div className='w-full max-w-xs sm:max-w-sm flex flex-col items-center gap-2 mt-10'>
               <button
                 onClick={handleStart}
@@ -250,9 +255,9 @@ function MainMenu({ onStart }) {
               hover:shadow-lg hover:shadow-white/80
               hover:translate-y-1
               active:translate-y-2 
-              ${isFormComplete ? 
-                'bg-yellow-300 text-black hover:shadow-lg hover:translate-y' : 
-                'bg-gray-400 text-gray-700 opacity-50 cursor-not-allowed'}`}
+              ${isFormComplete ?
+                    'bg-yellow-300 text-black hover:shadow-lg hover:translate-y' :
+                    'bg-gray-400 text-gray-700 opacity-50 cursor-not-allowed'}`}
               >
                 <span className="relative z-0">MULAI BERMAIN</span>
               </button>
@@ -358,7 +363,7 @@ function MainMenu({ onStart }) {
       {screen === 'INSTRUCTIONS' && (
         <div className="w-full max-w-4xl flex flex-col px-4 items-center gap-6 mt-16 sm:mt-10 pb-10 text-center">
           <TitleBlock />
-          
+
           <h3 className='mt-5 font-bold text-lg sm:text-xl text-black bg-[#a6a6a6] rounded-lg py-2 w-full max-w-sm'>
             PETUNJUK BERMAIN
           </h3>
@@ -371,10 +376,10 @@ function MainMenu({ onStart }) {
               <img src={P4} alt="Petunjuk 4" className='w-28 sm:w-44 object-contain shadow-lg rounded-xl' />
             </div>
           </div>
-          
+
           <button onClick={() => navigateTo('HOME')} className="py-4 mt-6 w-full max-w-sm bg-yellow-300 text-black 
             rounded-xl font-bold text-2xl sm:text-3xl transition duration-150 shadow-lg hover:shadow-amber-100 hover:-translate-y-1">
-              KEMBALI
+            KEMBALI
           </button>
         </div>
       )}
@@ -386,8 +391,8 @@ function MainMenu({ onStart }) {
 
           <div className="max-w-xl bg-[#D9D9D9] text-black p-6 sm:p-10 rounded-3xl w-11/12 mt-10 shadow-2xl flex flex-col items-center">
             <h2 className="text-3xl font-extrabold mb-6 tracking-widest text-[#1B0F3B]">ADMIN LOGIN</h2>
-            
-            <input 
+
+            <input
               type="text"
               placeholder="Username"
               value={adminUname}
@@ -395,7 +400,7 @@ function MainMenu({ onStart }) {
               className="w-full mb-4 px-4 py-3 rounded-xl border-4 border-white shadow-inner text-xl font-bold bg-[#b3bce6] placeholder-gray-600 focus:outline-none focus:border-yellow-400 transition"
             />
 
-            <input 
+            <input
               type="password"
               placeholder="Password"
               value={adminPass}
@@ -404,11 +409,11 @@ function MainMenu({ onStart }) {
               onKeyDown={(e) => e.key === 'Enter' && handleAdminLogin()}
               className="w-full mb-2 px-4 py-3 rounded-xl border-4 border-white shadow-inner text-xl font-bold bg-[#b3bce6] placeholder-gray-600 focus:outline-none focus:border-yellow-400 transition"
             />
-            
+
             {adminError && <p className="text-red-500 font-bold mb-4 w-full text-center">{adminError}</p>}
 
-            <button 
-              onClick={handleAdminLogin} 
+            <button
+              onClick={handleAdminLogin}
               className="w-full py-4 mt-4 bg-yellow-400 rounded-xl font-bold text-black text-2xl transition duration-300 shadow-[0_5px_0_#b59a00] hover:translate-y-1 hover:shadow-[0_2px_0_#b59a00] active:translate-y-2 active:shadow-none uppercase tracking-widest"
             >
               Masuk
@@ -424,9 +429,9 @@ function MainMenu({ onStart }) {
 
           <div className="w-11/12 md:w-full bg-[#D9D9D9] text-black p-6 rounded-3xl shadow-xl flex flex-col items-center border-[6px] border-white">
             <h2 className="text-2xl md:text-3xl font-extrabold mb-6 tracking-widest bg-white px-8 py-3 rounded-xl shadow-md border-4 border-black">PENGATURAN</h2>
-            
+
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-              
+
               {/* Kelas Boundaries */}
               <div className="flex flex-col gap-3">
                 <h3 className="font-extrabold text-xl text-center bg-gray-300 py-2 rounded-xl mb-2 border-2 border-black">BATAS ANGKA KELAS</h3>
@@ -435,14 +440,14 @@ function MainMenu({ onStart }) {
                     <span className="font-bold text-lg">Kelas {k}</span>
                     <div className="flex items-center">
                       <span className="mr-2 font-semibold text-gray-500">Maks:</span>
-                      <input 
-                        type="number" 
+                      <input
+                        type="number"
                         min="1"
                         value={adminCfg.classBoundaries[k] || ''}
                         onChange={(e) => {
                           const val = parseInt(e.target.value) || 0;
                           setAdminCfg(prev => ({
-                            ...prev, 
+                            ...prev,
                             classBoundaries: { ...prev.classBoundaries, [k]: val }
                           }));
                         }}
@@ -456,35 +461,35 @@ function MainMenu({ onStart }) {
               {/* Game Settings */}
               <div className="flex flex-col gap-3">
                 <h3 className="font-extrabold text-xl text-center bg-gray-300 py-2 rounded-xl mb-2 border-2 border-black">MODE PERMAINAN</h3>
-                
+
                 <div className="flex flex-col bg-white p-4 rounded-xl border-2 border-gray-400 shadow-sm">
                   <span className="font-bold text-lg mb-2">Batas Waktu (Menit)</span>
                   <p className="text-sm text-gray-600 mb-3 leading-tight">Pengaturan untuk Mode Batas Waktu. Boleh pakai desimal (misal 1.5 untuk 1 Menit 30 Detik).</p>
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     step="0.1"
                     min="0.1"
                     value={adminCfg.timers?.TIMER || ''}
                     onChange={(e) => {
                       const val = parseFloat(e.target.value) || 0;
                       setAdminCfg(prev => ({
-                        ...prev, 
+                        ...prev,
                         timers: { ...prev.timers, TIMER: val }
                       }));
                     }}
                     className="w-full px-4 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-2xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400 mb-4"
                   />
-                  
+
                   <span className="font-bold text-lg mb-2">Batas Soal (Waktu Tercepat)</span>
                   <p className="text-sm text-gray-600 mb-3 leading-tight">Pengaturan untuk Mode Waktu Tercepat (berapa banyak soal yang harus diselesaikan secapat mungkin).</p>
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     min="1"
                     value={adminCfg.timers?.STOPWATCH || ''}
                     onChange={(e) => {
                       const val = parseInt(e.target.value) || 0;
                       setAdminCfg(prev => ({
-                        ...prev, 
+                        ...prev,
                         timers: { ...prev.timers, STOPWATCH: val }
                       }));
                     }}
@@ -493,14 +498,14 @@ function MainMenu({ onStart }) {
 
                   <span className="font-bold text-lg mb-2">Batas Waktu Flash Cepat Animasi (Detik)</span>
                   <p className="text-sm text-gray-600 mb-3 leading-tight">Jika siswa menyelesaikan Waktu Tercepat dalam jumlah detik di bawah batas ini, akan muncul piala "Flash" (Default: 120 detik / 2 menit).</p>
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     min="1"
                     value={adminCfg.timers?.RATING_FAST_SEC || ''}
                     onChange={(e) => {
                       const val = parseInt(e.target.value) || 0;
                       setAdminCfg(prev => ({
-                        ...prev, 
+                        ...prev,
                         timers: { ...prev.timers, RATING_FAST_SEC: val }
                       }));
                     }}
@@ -509,14 +514,14 @@ function MainMenu({ onStart }) {
 
                   <span className="font-bold text-lg mb-2">Batas Rata-Rata Animasi (Detik)</span>
                   <p className="text-sm text-gray-600 mb-3 leading-tight">Jika di bawah batas ini akan diberi label Kelinci, jika di atas batas ini akan diberi Kura-Kura (Default: 240 detik / 4 menit).</p>
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     min="1"
                     value={adminCfg.timers?.RATING_MEDIUM_SEC || ''}
                     onChange={(e) => {
                       const val = parseInt(e.target.value) || 0;
                       setAdminCfg(prev => ({
-                        ...prev, 
+                        ...prev,
                         timers: { ...prev.timers, RATING_MEDIUM_SEC: val }
                       }));
                     }}
@@ -528,14 +533,14 @@ function MainMenu({ onStart }) {
             </div>
 
             <div className="mt-10 flex gap-4 w-full md:w-1/2">
-              <button 
-                onClick={() => navigateTo('HOME')} 
+              <button
+                onClick={() => navigateTo('HOME')}
                 className="flex-1 py-4 bg-gray-400 rounded-xl font-bold text-black text-xl transition shadow-[0_5px_0_#757575] hover:translate-y-1 active:translate-y-2 uppercase"
               >
                 Batal
               </button>
-              <button 
-                onClick={handleAdminSave} 
+              <button
+                onClick={handleAdminSave}
                 className="flex-1 py-4 bg-yellow-400 rounded-xl font-bold text-black text-xl transition shadow-[0_5px_0_#b59a00] hover:translate-y-1 hover:shadow-[0_2px_0_#b59a00] active:translate-y-2 active:shadow-none uppercase"
               >
                 Simpan

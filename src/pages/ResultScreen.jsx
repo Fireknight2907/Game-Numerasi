@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { EnumModePermainan } from '../models/Enums';
 import flash from '../assets/flash.png';
 import kelinciImg from '../assets/kelinci.png';
@@ -9,6 +9,11 @@ import { getAdminConfig } from '../utils/adminConfig';
 function ResultScreen({ result, onPlayAgain }) {
   const { correctAnswers, totalQuestions, timeSpent, mode } = result;
   const adminConfig = getAdminConfig();
+
+  useEffect(() => {
+    const bgm = document.getElementById('bgm');
+    if (bgm) bgm.pause();
+  }, []);
 
   const isTimeAttack = mode === EnumModePermainan.TIMER;
   // Score formula
