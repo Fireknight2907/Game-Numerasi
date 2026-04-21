@@ -19,6 +19,10 @@ body {
   letter-spacing: 4px;
 }
 
+.font-unbounded {
+  font-family: 'Unbounded', sans-serif;
+}
+
 /* Base button */
 .btn-pixel {
   font-family: 'VT323', monospace;

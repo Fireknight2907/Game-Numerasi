@@ -106,9 +106,13 @@ function ResultScreen({ result, onPlayAgain }) {
       <div className="flex flex-col w-full max-w-5xl justify-center items-center gap-6 sm:gap-8 relative -mb-13 px-4 pt-6">
         
         <div className="bg-black text-white px-6 py-4 rounded-[35px] font-bold text-lg sm:text-3xl border-4 border-[#333] flex items-center justify-center gap-4 shadow-2xl w-auto z-10 mb-2"> 
-          <span className="uppercase whitespace-nowrap text-[#c5d636]">✔ BENAR: {correctAnswers}</span>
+          <span className="uppercase whitespace-nowrap text-white">
+            <span className="text-[#00FF00]">✔</span> BENAR: {correctAnswers}
+          </span>
           <span className="text-white opacity-50">|</span>
-          <span className="uppercase whitespace-nowrap text-[#ff5252]">✖ SALAH: {Math.max(0, totalQuestions - correctAnswers)}</span>
+          <span className="uppercase whitespace-nowrap text-white">
+            <span className="text-[#ff5252]">✖</span> SALAH: {Math.max(0, totalQuestions - correctAnswers)}
+          </span>
         </div>
 
         <div className="flex text-white px-8 py-2 sm:px-12 items-center justify-center tracking-widest z-10">
@@ -159,15 +163,15 @@ function ResultScreen({ result, onPlayAgain }) {
       <div className="flex flex-col items-center gap-4 w-full max-w-sm mx-auto mt-10 md:mt-40 z-10 px-4">
         <button
           onClick={reloadGame}
-          className="btn-pixel btn-yellow w-full max-w-[280px] py-4 text-2xl sm:text-3xl font-black text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
-          style={{ textShadow: "none" }}
+          className="btn-pixel w-full max-w-[280px] py-4 text-lg sm:text-xl font-black text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
+          style={{ textShadow: "none", fontFamily: "'Unbounded', sans-serif" }}
         >
           SELESAI
         </button>
         <button
           onClick={onPlayAgain}
-          className="btn-pixel btn-yellow w-full max-w-[280px] py-4 text-2xl sm:text-3xl font-black text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
-          style={{ textShadow: "none" }}
+          className="btn-pixel w-full max-w-[280px] py-4 text-lg sm:text-xl font-black text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
+          style={{ textShadow: "none", fontFamily: "'Unbounded', sans-serif" }}
         >
           MULAI LAGI
         </button>
