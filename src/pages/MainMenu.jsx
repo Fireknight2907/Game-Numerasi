@@ -176,10 +176,10 @@ function MainMenu({ onStart }) {
             {/* CONTENT */}
             <div className="flex flex-col items-center gap-4 w-full mt-24 mb-10 px-4">
               
-              <div className="relative w-full sm:w-3/4 md:w-1/2 lg:w-1/3">
+              <div className="relative w-[80%] sm:w-3/4 md:w-1/2 lg:w-1/3">
                 <img 
                   src={mikir} 
-                  className="absolute w-24 sm:w-32 -top-14 sm:-top-20 -left-10 sm:-left-16 drop-shadow-xl z-0" 
+                  className="absolute w-24 sm:w-32 -top-16 sm:-top-20 -left-10 sm:-left-16 drop-shadow-xl z-0" 
                 />
                 <button
                   onClick={() => navigateTo('SPLASH')}
