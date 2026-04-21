@@ -122,13 +122,13 @@ function MainMenu({ onStart }) {
   );
 
   const TitleBlock = ({ showSubtitle = true }) => (
-    <div className="text-center px-4">
-      <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold tracking-widest 
-      whitespace-normal sm:whitespace-nowrap -mt-6 sm:-mt-10 text-shadow-lg text-shadow-black">
+    <div className="text-center px-4 mb-4">
+      <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-widest 
+      whitespace-normal sm:whitespace-nowrap mt-2 sm:mt-4 text-shadow-lg text-shadow-black">
         PERMAINAN NUMERASI
       </h1>
       {showSubtitle && (
-        <p className="text-base sm:text-lg md:text-2xl lg:text-3xl mt-2 tracking-widest">
+        <p className="text-base sm:text-xl md:text-3xl mt-2 tracking-widest">
           SDN 88 MANADO
         </p>
       )}
@@ -267,12 +267,12 @@ function MainMenu({ onStart }) {
 
       {/* ================= SETTINGS ================= */}
       {(screen === 'CLASS_SELECT' || screen === 'MODE_SELECT' || screen === 'TOPIC_SELECT') && (
-        <div className="w-full max-w-md md:max-w-2xl lg:max-w-4xl flex flex-col items-center gap-6 mt-5">
+        <div className="w-full max-w-md md:max-w-2xl lg:max-w-4xl flex flex-col items-center gap-6 mt-12 sm:mt-16">
 
           <TitleBlock />
 
-          <div className={`max-w-4xl bg-[#D9D9D9] text-black p-4 sm:p-6 rounded-2xl ${screen === 'MODE_SELECT' ? 'w-11/12 sm:w-md md:w-140' : 'w-80'}`}>
-            <div className='flex flex-col items-center mb-5 bg-white shadow-xl shadow-[#1B0F3B] border-5 py-3 rounded-xl text-3xl font-extrabold'>
+          <div className={`max-w-4xl bg-[#D9D9D9] text-black p-4 sm:p-6 rounded-2xl shadow-2xl ${screen === 'MODE_SELECT' ? 'w-[95%] sm:w-md md:w-140' : 'w-80'}`}>
+            <div className='flex flex-col items-center mb-5 bg-white shadow-xl shadow-[#1B0F3B] border-4 py-2 sm:py-3 rounded-xl text-xl sm:text-3xl font-extrabold'>
               {titleMap[screen] || 'MENU'}
             </div>
 
@@ -327,19 +327,19 @@ function MainMenu({ onStart }) {
                   <button
                     key={m.id}
                     onClick={() => setMode(m.id)}
-                    className={`w-full flex items-center justify-between py-4 sm:py-5 px-4 mb-4 rounded-[3rem] transition-all duration-300 hover:scale-[1.02] ${isSelected
+                    className={`w-full flex items-center justify-between py-3 sm:py-5 px-3 sm:px-4 mb-4 rounded-[2rem] sm:rounded-[3rem] transition-all duration-300 hover:scale-[1.02] ${isSelected
                       ? 'bg-black text-yellow-400 border-2 border-black shadow-xl'
                       : 'bg-transparent text-black border-2 border-black hover:bg-black/5'
                       }`}
                   >
-                    <div className="flex flex-col items-center justify-center font-extrabold text-2xl sm:text-3xl md:text-[2rem] tracking-wide leading-tight w-2/5">
-                      <span>{m.titleLine1}</span>
-                      <span>{m.titleLine2}</span>
+                    <div className="flex flex-col items-center justify-center font-extrabold text-base sm:text-2xl md:text-3xl tracking-tighter leading-tight w-[45%] sm:w-[45%]">
+                      <span className="whitespace-nowrap">{m.titleLine1}</span>
+                      <span className="whitespace-nowrap">{m.titleLine2}</span>
                     </div>
 
-                    <div className={`w-0.5 h-12 md:h-16 ${isSelected ? 'bg-yellow-400' : 'bg-black'}`}></div>
+                    <div className={`w-0.5 h-10 sm:h-12 md:h-16 ${isSelected ? 'bg-yellow-400' : 'bg-black'}`}></div>
 
-                    <div className="flex flex-col text-base sm:text-lg md:text-xl tracking-wide leading-tight text-center flex-1 font-bold px-2">
+                    <div className="flex flex-col text-[10px] sm:text-base md:text-lg tracking-tighter leading-tight text-center flex-1 font-bold px-1 sm:px-2">
                       {m.desc.map((line, i) => (
                         <span key={i}>{line}</span>
                       ))}
