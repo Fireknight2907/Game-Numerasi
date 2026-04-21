@@ -159,14 +159,14 @@ function ResultScreen({ result, onPlayAgain }) {
       <div className="flex flex-col items-center gap-4 w-full max-w-sm mx-auto mt-10 md:mt-40 z-10 px-4">
         <button
           onClick={reloadGame}
-          className="btn-pixel btn-yellow w-full md:w-48 py-3 text-2xl sm:text-3xl font-extrabold! h-16 sm:h-18 text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
+          className="btn-pixel btn-yellow w-full max-w-[280px] py-4 text-2xl sm:text-3xl font-black text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
           style={{ textShadow: "none" }}
         >
           SELESAI
         </button>
         <button
           onClick={onPlayAgain}
-          className="btn-pixel btn-yellow w-full md:w-55 py-5 text-3xl sm:text-4xl text-black font-extrabold! tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black"
+          className="btn-pixel btn-yellow w-full max-w-[280px] py-4 text-2xl sm:text-3xl font-black text-black tracking-widest shadow-[0_6px_0_#9da924] bg-[#c5d636] border-2 border-black hover:translate-y-1 transition-all"
           style={{ textShadow: "none" }}
         >
           MULAI LAGI
