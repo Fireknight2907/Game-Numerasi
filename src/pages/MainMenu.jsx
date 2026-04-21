@@ -214,8 +214,7 @@ function MainMenu({ onStart }) {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.3 }}
-          className='w-150 lg:max-w-4xl flex flex-col items-center 
-        gap-6'
+          className='w-full px-4 lg:max-w-4xl flex flex-col items-center gap-6'
         >
 
           <div className="w-full max-w-4xl flex flex-col items-center 

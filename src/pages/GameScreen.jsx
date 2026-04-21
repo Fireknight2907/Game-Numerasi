@@ -105,8 +105,8 @@ function GameScreen({ config, onEnd, onCancel }) {
                 const voices = window.speechSynthesis.getVoices();
                 // Utamakan mencari yang namanya mengandung kata 'indonesia'
                 const idVoice = voices.find(v => 
-                    v.name.toLowerCase().includes('indonesi') || 
-                    v.lang.toLowerCase().startsWith('id')
+                    (v.name && v.name.toLowerCase().includes('indonesi')) || 
+                    (v.lang && (v.lang.toLowerCase().startsWith('id') || v.lang.toLowerCase().startsWith('in-')))
                 );
                 
                 if (idVoice) {
