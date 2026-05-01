@@ -1,180 +1,180 @@
 import { KONFIGURASI_KELAS, MATERI_PELAJARAN } from './levelConfig';
 
-const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-const getRandomFloat = (min, max, decimals = 1) => {
-  const str = (Math.random() * (max - min) + min).toFixed(decimals);
+const ambilAngkaAcakInt = (min, batasMaksimal) => Math.floor(Math.random() * (batasMaksimal - min + 1)) + min;
+const ambilAngkaAcakFloat = (min, batasMaksimal, desimal = 1) => {
+  const str = (Math.random() * (batasMaksimal - min) + min).toFixed(desimal);
   return parseFloat(str);
 }
 
-const genPenjumlahan = (max) => {
-  const num1 = getRandomInt(1, max);
-  const num2 = getRandomInt(1, max);
-  return { question: `${num1} + ${num2}`, ans: (num1 + num2).toString(), type: MATERI_PELAJARAN.PENJUMLAHAN };
+const genPenjumlahan = (batasMaksimal) => {
+  const angka1 = ambilAngkaAcakInt(1, batasMaksimal);
+  const angka2 = ambilAngkaAcakInt(1, batasMaksimal);
+  return { soal: `${angka1} + ${angka2}`, jawaban: (angka1 + angka2).toString(), jenis: MATERI_PELAJARAN.PENJUMLAHAN };
 };
 
-const genPengurangan = (max) => {
-  const num1 = getRandomInt(1, max);
-  const num2 = getRandomInt(1, max);
-  const a = Math.max(num1, num2);
-  const b = Math.min(num1, num2);
-  return { question: `${a} - ${b}`, ans: (a - b).toString(), type: MATERI_PELAJARAN.PENGURANGAN };
+const genPengurangan = (batasMaksimal) => {
+  const angka1 = ambilAngkaAcakInt(1, batasMaksimal);
+  const angka2 = ambilAngkaAcakInt(1, batasMaksimal);
+  const a = Math.max(angka1, angka2);
+  const b = Math.min(angka1, angka2);
+  return { soal: `${a} - ${b}`, jawaban: (a - b).toString(), jenis: MATERI_PELAJARAN.PENGURANGAN };
 };
 
-const genPerkalian = (classLvl) => {
-  let max = classLvl <= 3 ? 10 : 20;
-  const num1 = getRandomInt(1, max);
-  const num2 = getRandomInt(1, 10);
-  return { question: `${num1} × ${num2}`, ans: (num1 * num2).toString(), type: MATERI_PELAJARAN.PERKALIAN };
+const genPerkalian = (tingkatKelas) => {
+  let batasMaksimal = tingkatKelas <= 3 ? 10 : 20;
+  const angka1 = ambilAngkaAcakInt(1, batasMaksimal);
+  const angka2 = ambilAngkaAcakInt(1, 10);
+  return { soal: `${angka1} × ${angka2}`, jawaban: (angka1 * angka2).toString(), jenis: MATERI_PELAJARAN.PERKALIAN };
 };
 
-const genPembagian = (classLvl) => {
-  let maxDivisor = classLvl <= 3 ? 10 : 20;
-  const divisor = getRandomInt(2, maxDivisor);
-  const answer = getRandomInt(2, 10);
-  const dividend = divisor * answer;
-  return { question: `${dividend} ÷ ${divisor}`, ans: answer.toString(), type: MATERI_PELAJARAN.PEMBAGIAN };
+const genPembagian = (tingkatKelas) => {
+  let batasPembagi = tingkatKelas <= 3 ? 10 : 20;
+  const pembagi = ambilAngkaAcakInt(2, batasPembagi);
+  const hasilBagi = ambilAngkaAcakInt(2, 10);
+  const angkaYangDibagi = pembagi * hasilBagi;
+  return { soal: `${angkaYangDibagi} ÷ ${pembagi}`, jawaban: hasilBagi.toString(), jenis: MATERI_PELAJARAN.PEMBAGIAN };
 };
 
-const genPositifNegatif = (max) => {
-  const ops = ['+', '-'];
-  const op = ops[getRandomInt(0, 1)];
-  let num1 = getRandomInt(1, Math.min(max, 50)) * (getRandomInt(0,1) ? 1 : -1);
-  let num2 = getRandomInt(1, Math.min(max, 50)) * (getRandomInt(0,1) ? 1 : -1);
-  const ans = op === '+' ? num1 + num2 : num1 - num2;
-  const n2Str = num2 < 0 ? `(${num2})` : `${num2}`;
-  return { question: `${num1} ${op} ${n2Str}`, ans: ans.toString(), type: MATERI_PELAJARAN.POSITIF_NEGATIF };
+const genPositifNegatif = (batasMaksimal) => {
+  const daftarOperator = ['+', '-'];
+  const operator = daftarOperator[ambilAngkaAcakInt(0, 1)];
+  let angka1 = ambilAngkaAcakInt(1, Math.min(batasMaksimal, 50)) * (ambilAngkaAcakInt(0,1) ? 1 : -1);
+  let angka2 = ambilAngkaAcakInt(1, Math.min(batasMaksimal, 50)) * (ambilAngkaAcakInt(0,1) ? 1 : -1);
+  const jawabanAkhir = operator === '+' ? angka1 + angka2 : angka1 - angka2;
+  const strAngka2 = angka2 < 0 ? `(${angka2})` : `${angka2}`;
+  return { soal: `${angka1} ${operator} ${strAngka2}`, jawaban: jawabanAkhir.toString(), jenis: MATERI_PELAJARAN.POSITIF_NEGATIF };
 }
 
 const genCampuran = () => {
-  const B = getRandomInt(1, 10);
-  const C = getRandomInt(1, 10);
-  const A = getRandomInt(1, 20);
-  if (getRandomInt(0, 1) === 0) {
-    return { question: `${A} + ${B} × ${C}`, ans: (A + B * C).toString(), type: MATERI_PELAJARAN.CAMPURAN };
+  const B = ambilAngkaAcakInt(1, 10);
+  const C = ambilAngkaAcakInt(1, 10);
+  const A = ambilAngkaAcakInt(1, 20);
+  if (ambilAngkaAcakInt(0, 1) === 0) {
+    return { soal: `${A} + ${B} × ${C}`, jawaban: (A + B * C).toString(), jenis: MATERI_PELAJARAN.CAMPURAN };
   } else {
-    return { question: `${B} × ${C} - ${A}`, ans: (B * C - A).toString(), type: MATERI_PELAJARAN.CAMPURAN };
+    return { soal: `${B} × ${C} - ${A}`, jawaban: (B * C - A).toString(), jenis: MATERI_PELAJARAN.CAMPURAN };
   }
 }
 
 const genDesimal = () => {
-  const num1 = getRandomFloat(1, 10, 1);
-  const num2 = getRandomFloat(1, 10, 1);
-  const op = getRandomInt(0, 1) === 0 ? '+' : '-';
-  let a = num1, b = num2;
-  if (op === '-' && num2 > num1) { a = num2; b = num1; }
-  const ans = op === '+' ? Math.round((a + b)*10)/10 : Math.round((a - b)*10)/10;
-  return { question: `${a} ${op} ${b}`, ans: ans.toString(), type: MATERI_PELAJARAN.DESIMAL };
+  const angka1 = ambilAngkaAcakFloat(1, 10, 1);
+  const angka2 = ambilAngkaAcakFloat(1, 10, 1);
+  const operator = ambilAngkaAcakInt(0, 1) === 0 ? '+' : '-';
+  let a = angka1, b = angka2;
+  if (operator === '-' && angka2 > angka1) { a = angka2; b = angka1; }
+  const jawabanAkhir = operator === '+' ? Math.round((a + b)*10)/10 : Math.round((a - b)*10)/10;
+  return { soal: `${a} ${operator} ${b}`, jawaban: jawabanAkhir.toString(), jenis: MATERI_PELAJARAN.DESIMAL };
 }
 
 const genPecahan = () => {
-    const denoms = [2, 3, 4, 5, 6, 8, 10];
-    let d1 = denoms[getRandomInt(0, denoms.length - 1)];
-    let d2 = denoms[getRandomInt(0, denoms.length - 1)];
+    const daftarPenyebut = [2, 3, 4, 5, 6, 8, 10];
+    let penyebut1 = daftarPenyebut[ambilAngkaAcakInt(0, daftarPenyebut.length - 1)];
+    let penyebut2 = daftarPenyebut[ambilAngkaAcakInt(0, daftarPenyebut.length - 1)];
     
-    if (getRandomInt(0, 1) === 0) d2 = d1;
+    if (ambilAngkaAcakInt(0, 1) === 0) penyebut2 = penyebut1;
   
-    let n1 = getRandomInt(1, d1 - 1) || 1;
-    let n2 = getRandomInt(1, d2 - 1) || 1;
+    let pembilang1 = ambilAngkaAcakInt(1, penyebut1 - 1) || 1;
+    let pembilang2 = ambilAngkaAcakInt(1, penyebut2 - 1) || 1;
     
-    const op = getRandomInt(0, 1) === 0 ? '+' : '-';
+    const operator = ambilAngkaAcakInt(0, 1) === 0 ? '+' : '-';
     
-    if (op === '-' && (n1/d1 < n2/d2)) {
-      let t = n1; n1 = n2; n2 = t;
-      t = d1; d1 = d2; d2 = t;
+    if (operator === '-' && (pembilang1/penyebut1 < pembilang2/penyebut2)) {
+      let temp = pembilang1; pembilang1 = pembilang2; pembilang2 = temp;
+      temp = penyebut1; penyebut1 = penyebut2; penyebut2 = temp;
     }
   
-    let top = op === '+' ? n1 * d2 + n2 * d1 : n1 * d2 - n2 * d1;
-    let bot = d1 * d2;
+    let hasilAtas = operator === '+' ? pembilang1 * penyebut2 + pembilang2 * penyebut1 : pembilang1 * penyebut2 - pembilang2 * penyebut1;
+    let hasilBawah = penyebut1 * penyebut2;
     
     return { 
-        question: `${n1}/${d1} ${op} ${n2}/${d2}`, 
-        ans: { num: top, den: bot }, 
-        type: MATERI_PELAJARAN.PECAHAN 
+        soal: `${pembilang1}/${penyebut1} ${operator} ${pembilang2}/${penyebut2}`, 
+        jawaban: { atas: hasilAtas, bawah: hasilBawah }, 
+        jenis: MATERI_PELAJARAN.PECAHAN 
     };
 };
 
-const genBangunDatar = (max) => {
-    const m = Math.min(max, 30);
-    const shapes = ['Persegi', 'Persegi Panjang', 'Segitiga'];
-    const shape = shapes[getRandomInt(0, shapes.length - 1)];
-    const isLuas = getRandomInt(0, 1) === 0;
+const genBangunDatar = (batasMaksimal) => {
+    const m = Math.min(batasMaksimal, 30);
+    const daftarBangun = ['Persegi', 'Persegi Panjang', 'Segitiga'];
+    const bangunDatar = daftarBangun[ambilAngkaAcakInt(0, daftarBangun.length - 1)];
+    const apakahLuas = ambilAngkaAcakInt(0, 1) === 0;
     
-    let qStr = isLuas ? 'Luas' : 'Keliling';
-    let ans = 0;
+    let teksSoal = apakahLuas ? 'Luas' : 'Keliling';
+    let jawabanAkhir = 0;
     
-    if (shape === 'Persegi') {
-      const s = getRandomInt(1, m);
-      qStr += ` Persegi (sisi=${s})`;
-      ans = isLuas ? s * s : 4 * s;
-    } else if (shape === 'Persegi Panjang') {
-      const p = getRandomInt(2, m);
-      const l = getRandomInt(1, p - 1) || 1;
-      qStr += ` Persegi Panjang (panjang=${p}, lebar=${l})`;
-      ans = isLuas ? p * l : 2 * (p + l);
+    if (bangunDatar === 'Persegi') {
+      const sisi = ambilAngkaAcakInt(1, m);
+      teksSoal += ` Persegi (sisi=${sisi})`;
+      jawabanAkhir = apakahLuas ? sisi * sisi : 4 * sisi;
+    } else if (bangunDatar === 'Persegi Panjang') {
+      const p = ambilAngkaAcakInt(2, m);
+      const l = ambilAngkaAcakInt(1, p - 1) || 1;
+      teksSoal += ` Persegi Panjang (panjang=${p}, lebar=${l})`;
+      jawabanAkhir = apakahLuas ? p * l : 2 * (p + l);
     } else {
-      const s = getRandomInt(2, m);
-      if (!isLuas) {
-          qStr += ` Segitiga Sama Sisi (sisi=${s})`;
-          ans = 3 * s;
+      const sisi = ambilAngkaAcakInt(2, m);
+      if (!apakahLuas) {
+          teksSoal += ` Segitiga Sama Sisi (sisi=${sisi})`;
+          jawabanAkhir = 3 * sisi;
       } else {
-          let t = getRandomInt(2, 10);
-          if (s % 2 !== 0 && t % 2 !== 0) t++;
-          qStr += ` Segitiga (alas=${s}, tinggi=${t})`;
-          ans = (s * t) / 2;
+          let tinggi = ambilAngkaAcakInt(2, 10);
+          if (sisi % 2 !== 0 && tinggi % 2 !== 0) tinggi++;
+          teksSoal += ` Segitiga (alas=${sisi}, tinggi=${tinggi})`;
+          jawabanAkhir = (sisi * tinggi) / 2;
       }
     }
-    return { question: qStr, ans: ans.toString(), type: MATERI_PELAJARAN.BANGUN_DATAR };
+    return { soal: teksSoal, jawaban: jawabanAkhir.toString(), jenis: MATERI_PELAJARAN.BANGUN_DATAR };
 };
 
-export const generateQuestion = (classLvl, activeTopics = []) => {
-    const config = KONFIGURASI_KELAS[classLvl];
+export const generateQuestion = (tingkatKelas, materiAktif = []) => {
+    const config = KONFIGURASI_KELAS[tingkatKelas];
     if (!config) return genPenjumlahan(20);
 
-    const max = config.maksimal;
-    if (activeTopics.length === 0) activeTopics = config.materi; 
-    const topic = activeTopics[getRandomInt(0, activeTopics.length - 1)];
+    const batasMaksimal = config.maksimal;
+    if (materiAktif.length === 0) materiAktif = config.materi; 
+    const topik = materiAktif[ambilAngkaAcakInt(0, materiAktif.length - 1)];
 
-    switch (topic) {
-        case MATERI_PELAJARAN.PENJUMLAHAN: return genPenjumlahan(max);
-        case MATERI_PELAJARAN.PENGURANGAN: return genPengurangan(max);
-        case MATERI_PELAJARAN.PERKALIAN: return genPerkalian(classLvl);
-        case MATERI_PELAJARAN.PEMBAGIAN: return genPembagian(classLvl);
+    switch (topik) {
+        case MATERI_PELAJARAN.PENJUMLAHAN: return genPenjumlahan(batasMaksimal);
+        case MATERI_PELAJARAN.PENGURANGAN: return genPengurangan(batasMaksimal);
+        case MATERI_PELAJARAN.PERKALIAN: return genPerkalian(tingkatKelas);
+        case MATERI_PELAJARAN.PEMBAGIAN: return genPembagian(tingkatKelas);
         case MATERI_PELAJARAN.DESIMAL: return genDesimal();
         case MATERI_PELAJARAN.PECAHAN: return genPecahan();
-        case MATERI_PELAJARAN.POSITIF_NEGATIF: return genPositifNegatif(max);
+        case MATERI_PELAJARAN.POSITIF_NEGATIF: return genPositifNegatif(batasMaksimal);
         case MATERI_PELAJARAN.CAMPURAN: return genCampuran();
-        case MATERI_PELAJARAN.BANGUN_DATAR: return genBangunDatar(max);
-        default: return genPenjumlahan(max);
+        case MATERI_PELAJARAN.BANGUN_DATAR: return genBangunDatar(batasMaksimal);
+        default: return genPenjumlahan(batasMaksimal);
     }
 };
 
-export const checkAnswer = (questionObj, userInput) => {
-    if (!userInput) return false;
+export const checkAnswer = (objekSoal, inputPengguna) => {
+    if (!inputPengguna) return false;
     
-    if (questionObj.type === MATERI_PELAJARAN.PECAHAN) {
-        let uNum, uDen;
-        if (userInput.includes('/')) {
-            const parts = userInput.split('/');
-            uNum = parseInt(parts[0], 10);
-            uDen = parseInt(parts[1], 10);
+    if (objekSoal.jenis === MATERI_PELAJARAN.PECAHAN) {
+        let inputAtas, inputBawah;
+        if (inputPengguna.includes('/')) {
+            const bagian = inputPengguna.split('/');
+            inputAtas = parseInt(bagian[0], 10);
+            inputBawah = parseInt(bagian[1], 10);
         } else {
             // Bisa jadi mereka isi num saja
-            uNum = parseFloat(userInput);
-            if (userInput.includes('.')) {
+            inputAtas = parseFloat(inputPengguna);
+            if (inputPengguna.includes('.')) {
                 // jika desimal diijinkan untuk pecahan? Prompt: "Pecahan bisa dijawab tidak simple form 4/40"
                 // Desimal tidak lazim untuk Pecahan UI kids, tapi fallback
-                return Math.abs(uNum - (questionObj.ans.num / questionObj.ans.den)) < 0.01;
+                return Math.abs(inputAtas - (objekSoal.jawaban.atas / objekSoal.jawaban.bawah)) < 0.01;
             }
-            uDen = 1;
+            inputBawah = 1;
         }
         
-        const qNum = questionObj.ans.num;
-        const qDen = questionObj.ans.den;
+        const soalAtas = objekSoal.jawaban.atas;
+        const soalBawah = objekSoal.jawaban.bawah;
         
-        if (isNaN(uNum) || isNaN(uDen) || uDen === 0) return false;
+        if (isNaN(inputAtas) || isNaN(inputBawah) || inputBawah === 0) return false;
         
-        return uNum * qDen === qNum * uDen; 
+        return inputAtas * soalBawah === soalAtas * inputBawah; 
     }
     
-    return userInput.trim() === questionObj.ans.toString();
+    return inputPengguna.trim() === objekSoal.jawaban.toString();
 };
