@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { EnumModePermainan, EnumOperasi } from '../models/Enums';
-import { CLASS_CONFIG } from '../utils/levelConfig';
+import { KONFIGURASI_KELAS } from '../utils/levelConfig';
 import logoDela from '../assets/logoDela.png';
 import logoSD from '../assets/logoSD.png';
 import mikir from '../assets/mikir.png';
@@ -9,7 +9,7 @@ import P2 from '../assets/P2.png';
 import P3 from '../assets/P3.png';
 import P4 from '../assets/P4.png'
 import { motion, AnimatePresence } from "framer-motion";
-import { getAdminConfig, saveAdminConfig } from '../utils/adminConfig';
+import { ambilKonfigurasiAdmin, simpanKonfigurasiAdmin } from '../utils/adminConfig';
 
 function MainMenu({ onStart }) {
   const [screen, setScreen] = useState('HOME');
@@ -27,7 +27,7 @@ function MainMenu({ onStart }) {
   const [adminUname, setAdminUname] = useState('');
   const [adminPass, setAdminPass] = useState('');
   const [adminError, setAdminError] = useState('');
-  const [adminCfg, setAdminCfg] = useState(getAdminConfig());
+  const [adminCfg, setAdminCfg] = useState(ambilKonfigurasiAdmin());
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function MainMenu({ onStart }) {
       setAdminUname('');
       setAdminPass('');
       // Reload config just in case
-      setAdminCfg(getAdminConfig());
+      setAdminCfg(ambilKonfigurasiAdmin());
       navigateTo('ADMIN_PANEL');
     } else {
       setAdminError('Username atau password salah!');
@@ -59,7 +59,7 @@ function MainMenu({ onStart }) {
   };
 
   const handleAdminSave = () => {
-    saveAdminConfig(adminCfg);
+    simpanKonfigurasiAdmin(adminCfg);
     navigateTo('HOME');
   };
 
@@ -309,7 +309,7 @@ function MainMenu({ onStart }) {
             </div>
 
             {screen === 'CLASS_SELECT' &&
-              Object.keys(CLASS_CONFIG).map(c => (
+              Object.keys(KONFIGURASI_KELAS).map(c => (
                 <button
                   key={c}
                   onClick={() => handleClassSelect(c)}
@@ -325,7 +325,7 @@ function MainMenu({ onStart }) {
             }
 
             {screen === 'TOPIC_SELECT' && selectedClass &&
-              CLASS_CONFIG[selectedClass].topics.map(t => (
+              KONFIGURASI_KELAS[selectedClass].materi.map(t => (
 
                 <button
                   key={t}
@@ -345,13 +345,13 @@ function MainMenu({ onStart }) {
                   id: EnumModePermainan.TIMER,
                   titleLine1: 'BATAS',
                   titleLine2: 'WAKTU',
-                  desc: ['JAWAB SOAL DALAM', `WAKTU ${getAdminConfig().timers?.TIMER || 2} MENIT`]
+                  desc: ['JAWAB SOAL DALAM', `WAKTU ${ambilKonfigurasiAdmin().pengaturanWaktu?.TIMER || 2} MENIT`]
                 },
                 {
                   id: EnumModePermainan.STOPWATCH,
                   titleLine1: 'WAKTU',
                   titleLine2: 'TERCEPAT',
-                  desc: ['KEJAR WAKTU', 'TERBAIKMU DALAM', `MENYELESAIKAN ${getAdminConfig().timers?.STOPWATCH || 20} SOAL`]
+                  desc: ['KEJAR WAKTU', 'TERBAIKMU DALAM', `MENYELESAIKAN ${ambilKonfigurasiAdmin().pengaturanWaktu?.STOPWATCH || 20} SOAL`]
                 }
               ].map((m, index) => {
                 const isSelected = mode === m.id;
@@ -474,12 +474,12 @@ function MainMenu({ onStart }) {
                       <input
                         type="number"
                         min="1"
-                        value={adminCfg.classBoundaries[k] || ''}
+                        value={adminCfg.batasAngkaKelas[k] || ''}
                         onChange={(e) => {
                           const val = parseInt(e.target.value) || 0;
                           setAdminCfg(prev => ({
                             ...prev,
-                            classBoundaries: { ...prev.classBoundaries, [k]: val }
+                            batasAngkaKelas: { ...prev.batasAngkaKelas, [k]: val }
                           }));
                         }}
                         className="w-24 px-2 py-1 border-2 border-blue-400 rounded-lg text-center font-bold text-xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400"
@@ -500,12 +500,12 @@ function MainMenu({ onStart }) {
                     type="number"
                     step="0.1"
                     min="0.1"
-                    value={adminCfg.timers?.TIMER || ''}
+                    value={adminCfg.pengaturanWaktu?.TIMER || ''}
                     onChange={(e) => {
                       const val = parseFloat(e.target.value) || 0;
                       setAdminCfg(prev => ({
                         ...prev,
-                        timers: { ...prev.timers, TIMER: val }
+                        pengaturanWaktu: { ...prev.pengaturanWaktu, TIMER: val }
                       }));
                     }}
                     className="w-full px-4 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-2xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400 mb-4"
@@ -516,12 +516,12 @@ function MainMenu({ onStart }) {
                   <input
                     type="number"
                     min="1"
-                    value={adminCfg.timers?.STOPWATCH || ''}
+                    value={adminCfg.pengaturanWaktu?.STOPWATCH || ''}
                     onChange={(e) => {
                       const val = parseInt(e.target.value) || 0;
                       setAdminCfg(prev => ({
                         ...prev,
-                        timers: { ...prev.timers, STOPWATCH: val }
+                        pengaturanWaktu: { ...prev.pengaturanWaktu, STOPWATCH: val }
                       }));
                     }}
                     className="w-full px-4 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-2xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400 mb-4"
@@ -532,12 +532,12 @@ function MainMenu({ onStart }) {
                   <input
                     type="number"
                     min="1"
-                    value={adminCfg.timers?.RATING_FAST_SEC || ''}
+                    value={adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK || ''}
                     onChange={(e) => {
                       const val = parseInt(e.target.value) || 0;
                       setAdminCfg(prev => ({
                         ...prev,
-                        timers: { ...prev.timers, RATING_FAST_SEC: val }
+                        pengaturanWaktu: { ...prev.pengaturanWaktu, RATING_CEPAT_DETIK: val }
                       }));
                     }}
                     className="w-full px-4 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-2xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400 mb-4"
@@ -548,12 +548,12 @@ function MainMenu({ onStart }) {
                   <input
                     type="number"
                     min="1"
-                    value={adminCfg.timers?.RATING_MEDIUM_SEC || ''}
+                    value={adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK || ''}
                     onChange={(e) => {
                       const val = parseInt(e.target.value) || 0;
                       setAdminCfg(prev => ({
                         ...prev,
-                        timers: { ...prev.timers, RATING_MEDIUM_SEC: val }
+                        pengaturanWaktu: { ...prev.pengaturanWaktu, RATING_SEDANG_DETIK: val }
                       }));
                     }}
                     className="w-full px-4 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-2xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400"

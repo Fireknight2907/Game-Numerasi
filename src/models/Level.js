@@ -1,4 +1,4 @@
-import { getAdminConfig } from '../utils/adminConfig';
+import { ambilKonfigurasiAdmin } from '../utils/adminConfig';
 
 export class Level {
     constructor(kelasStr) {
@@ -6,8 +6,8 @@ export class Level {
         this.kelas = parseInt(kelasStr, 10) || 1;
         this.angkaMinimal = 1;
         
-        const config = getAdminConfig();
-        const batasKelas = config.classBoundaries[this.kelas] || 20;
+        const config = ambilKonfigurasiAdmin();
+        const batasKelas = config.batasAngkaKelas[this.kelas] || 20;
         
         this.angkaMaksimal = batasKelas;
         

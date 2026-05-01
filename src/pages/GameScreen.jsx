@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { EnumModePermainan, EnumOperasi } from '../models/Enums';
 import { Permainan } from '../models/Permainan';
-import { getAdminConfig } from '../utils/adminConfig';
+import { ambilKonfigurasiAdmin } from '../utils/adminConfig';
 
 import mikirJawab from '../assets/mikirjawab.png';
 import tenSecSound from '../assets/10 sec.mp3';
@@ -11,9 +11,9 @@ function GameScreen({ config, onEnd, onCancel }) {
     
 
     const isTimeAttack = config.mode === EnumModePermainan.TIMER;
-    const adminConfig = getAdminConfig();
-    const timerLimit = (adminConfig.timers?.TIMER || 2) * 60;
-    const TOTAL_STOPWATCH_Q = adminConfig.timers?.STOPWATCH || 20;
+    const adminConfig = ambilKonfigurasiAdmin();
+    const timerLimit = (adminConfig.pengaturanWaktu?.TIMER || 2) * 60;
+    const TOTAL_STOPWATCH_Q = adminConfig.pengaturanWaktu?.STOPWATCH || 20;
 
     const [currentQ, setCurrentQ] = useState(null);
     const [qIndex, setQIndex] = useState(0);

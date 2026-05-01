@@ -1,4 +1,4 @@
-import { CLASS_CONFIG, TOPICS } from './levelConfig';
+import { KONFIGURASI_KELAS, MATERI_PELAJARAN } from './levelConfig';
 
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const getRandomFloat = (min, max, decimals = 1) => {
@@ -9,7 +9,7 @@ const getRandomFloat = (min, max, decimals = 1) => {
 const genPenjumlahan = (max) => {
   const num1 = getRandomInt(1, max);
   const num2 = getRandomInt(1, max);
-  return { question: `${num1} + ${num2}`, ans: (num1 + num2).toString(), type: TOPICS.PENJUMLAHAN };
+  return { question: `${num1} + ${num2}`, ans: (num1 + num2).toString(), type: MATERI_PELAJARAN.PENJUMLAHAN };
 };
 
 const genPengurangan = (max) => {
@@ -17,14 +17,14 @@ const genPengurangan = (max) => {
   const num2 = getRandomInt(1, max);
   const a = Math.max(num1, num2);
   const b = Math.min(num1, num2);
-  return { question: `${a} - ${b}`, ans: (a - b).toString(), type: TOPICS.PENGURANGAN };
+  return { question: `${a} - ${b}`, ans: (a - b).toString(), type: MATERI_PELAJARAN.PENGURANGAN };
 };
 
 const genPerkalian = (classLvl) => {
   let max = classLvl <= 3 ? 10 : 20;
   const num1 = getRandomInt(1, max);
   const num2 = getRandomInt(1, 10);
-  return { question: `${num1} × ${num2}`, ans: (num1 * num2).toString(), type: TOPICS.PERKALIAN };
+  return { question: `${num1} × ${num2}`, ans: (num1 * num2).toString(), type: MATERI_PELAJARAN.PERKALIAN };
 };
 
 const genPembagian = (classLvl) => {
@@ -32,7 +32,7 @@ const genPembagian = (classLvl) => {
   const divisor = getRandomInt(2, maxDivisor);
   const answer = getRandomInt(2, 10);
   const dividend = divisor * answer;
-  return { question: `${dividend} ÷ ${divisor}`, ans: answer.toString(), type: TOPICS.PEMBAGIAN };
+  return { question: `${dividend} ÷ ${divisor}`, ans: answer.toString(), type: MATERI_PELAJARAN.PEMBAGIAN };
 };
 
 const genPositifNegatif = (max) => {
@@ -42,7 +42,7 @@ const genPositifNegatif = (max) => {
   let num2 = getRandomInt(1, Math.min(max, 50)) * (getRandomInt(0,1) ? 1 : -1);
   const ans = op === '+' ? num1 + num2 : num1 - num2;
   const n2Str = num2 < 0 ? `(${num2})` : `${num2}`;
-  return { question: `${num1} ${op} ${n2Str}`, ans: ans.toString(), type: TOPICS.POSITIF_NEGATIF };
+  return { question: `${num1} ${op} ${n2Str}`, ans: ans.toString(), type: MATERI_PELAJARAN.POSITIF_NEGATIF };
 }
 
 const genCampuran = () => {
@@ -50,9 +50,9 @@ const genCampuran = () => {
   const C = getRandomInt(1, 10);
   const A = getRandomInt(1, 20);
   if (getRandomInt(0, 1) === 0) {
-    return { question: `${A} + ${B} × ${C}`, ans: (A + B * C).toString(), type: TOPICS.CAMPURAN };
+    return { question: `${A} + ${B} × ${C}`, ans: (A + B * C).toString(), type: MATERI_PELAJARAN.CAMPURAN };
   } else {
-    return { question: `${B} × ${C} - ${A}`, ans: (B * C - A).toString(), type: TOPICS.CAMPURAN };
+    return { question: `${B} × ${C} - ${A}`, ans: (B * C - A).toString(), type: MATERI_PELAJARAN.CAMPURAN };
   }
 }
 
@@ -63,7 +63,7 @@ const genDesimal = () => {
   let a = num1, b = num2;
   if (op === '-' && num2 > num1) { a = num2; b = num1; }
   const ans = op === '+' ? Math.round((a + b)*10)/10 : Math.round((a - b)*10)/10;
-  return { question: `${a} ${op} ${b}`, ans: ans.toString(), type: TOPICS.DESIMAL };
+  return { question: `${a} ${op} ${b}`, ans: ans.toString(), type: MATERI_PELAJARAN.DESIMAL };
 }
 
 const genPecahan = () => {
@@ -89,7 +89,7 @@ const genPecahan = () => {
     return { 
         question: `${n1}/${d1} ${op} ${n2}/${d2}`, 
         ans: { num: top, den: bot }, 
-        type: TOPICS.PECAHAN 
+        type: MATERI_PELAJARAN.PECAHAN 
     };
 };
 
@@ -123,27 +123,27 @@ const genBangunDatar = (max) => {
           ans = (s * t) / 2;
       }
     }
-    return { question: qStr, ans: ans.toString(), type: TOPICS.BANGUN_DATAR };
+    return { question: qStr, ans: ans.toString(), type: MATERI_PELAJARAN.BANGUN_DATAR };
 };
 
 export const generateQuestion = (classLvl, activeTopics = []) => {
-    const config = CLASS_CONFIG[classLvl];
+    const config = KONFIGURASI_KELAS[classLvl];
     if (!config) return genPenjumlahan(20);
 
-    const max = config.max;
-    if (activeTopics.length === 0) activeTopics = config.topics; 
+    const max = config.maksimal;
+    if (activeTopics.length === 0) activeTopics = config.materi; 
     const topic = activeTopics[getRandomInt(0, activeTopics.length - 1)];
 
     switch (topic) {
-        case TOPICS.PENJUMLAHAN: return genPenjumlahan(max);
-        case TOPICS.PENGURANGAN: return genPengurangan(max);
-        case TOPICS.PERKALIAN: return genPerkalian(classLvl);
-        case TOPICS.PEMBAGIAN: return genPembagian(classLvl);
-        case TOPICS.DESIMAL: return genDesimal();
-        case TOPICS.PECAHAN: return genPecahan();
-        case TOPICS.POSITIF_NEGATIF: return genPositifNegatif(max);
-        case TOPICS.CAMPURAN: return genCampuran();
-        case TOPICS.BANGUN_DATAR: return genBangunDatar(max);
+        case MATERI_PELAJARAN.PENJUMLAHAN: return genPenjumlahan(max);
+        case MATERI_PELAJARAN.PENGURANGAN: return genPengurangan(max);
+        case MATERI_PELAJARAN.PERKALIAN: return genPerkalian(classLvl);
+        case MATERI_PELAJARAN.PEMBAGIAN: return genPembagian(classLvl);
+        case MATERI_PELAJARAN.DESIMAL: return genDesimal();
+        case MATERI_PELAJARAN.PECAHAN: return genPecahan();
+        case MATERI_PELAJARAN.POSITIF_NEGATIF: return genPositifNegatif(max);
+        case MATERI_PELAJARAN.CAMPURAN: return genCampuran();
+        case MATERI_PELAJARAN.BANGUN_DATAR: return genBangunDatar(max);
         default: return genPenjumlahan(max);
     }
 };
@@ -151,7 +151,7 @@ export const generateQuestion = (classLvl, activeTopics = []) => {
 export const checkAnswer = (questionObj, userInput) => {
     if (!userInput) return false;
     
-    if (questionObj.type === TOPICS.PECAHAN) {
+    if (questionObj.type === MATERI_PELAJARAN.PECAHAN) {
         let uNum, uDen;
         if (userInput.includes('/')) {
             const parts = userInput.split('/');

@@ -16,16 +16,16 @@ export class SoalPecahan extends Soal {
         let d1 = denoms[getRandomInt(0, denoms.length - 1)];
         let d2 = denoms[getRandomInt(0, denoms.length - 1)];
         if (getRandomInt(0, 1) === 0) d2 = d1;
-      
+
         let n1 = getRandomInt(1, d1 - 1) || 1;
         let n2 = getRandomInt(1, d2 - 1) || 1;
-        
+
         const op = getRandomInt(0, 1) === 0 ? '+' : '-';
-        if (op === '-' && (n1/d1 < n2/d2)) {
-          let t = n1; n1 = n2; n2 = t;
-          t = d1; d1 = d2; d2 = t;
+        if (op === '-' && (n1 / d1 < n2 / d2)) {
+            let t = n1; n1 = n2; n2 = t;
+            t = d1; d1 = d2; d2 = t;
         }
-      
+
         let top = op === '+' ? n1 * d2 + n2 * d1 : n1 * d2 - n2 * d1;
         let bot = d1 * d2;
 
@@ -33,7 +33,7 @@ export class SoalPecahan extends Soal {
         this.penyebut1 = d1;
         this.pembilangJawaban = top;
         this.penyebutJawaban = bot;
-        
+
         this.teksSoal = `${n1}/${d1} ${op} ${n2}/${d2}`;
         this.kunciJawaban = `${top}/${bot}`;
     }
@@ -52,9 +52,9 @@ export class SoalPecahan extends Soal {
             }
             uDen = 1;
         }
-        
+
         if (isNaN(uNum) || isNaN(uDen) || uDen === 0) return false;
-        
-        return uNum * this.penyebutJawaban === this.pembilangJawaban * uDen; 
+
+        return uNum * this.penyebutJawaban === this.pembilangJawaban * uDen;
     }
 }

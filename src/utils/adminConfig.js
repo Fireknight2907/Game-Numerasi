@@ -1,42 +1,43 @@
-const STORAGE_KEY = 'NUMERASI_ADMIN_CONFIG';
+const KUNCI_PENYIMPANAN = 'NUMERASI_ADMIN_CONFIG';
 
-const DEFAULT_CONFIG = {
-  classBoundaries: {
-    1: 20,
-    2: 100,
-    3: 1000,
-    4: 50,
-    5: 500,
-    6: 1000
+// Kita sesuaikan angka bawaannya dengan aturan laporan skripsimu
+const KONFIGURASI_BAWAAN = {
+  batasAngkaKelas: {
+    1: 50,  
+    2: 50,  
+    3: 100, 
+    4: 100, 
+    5: 100, 
+    6: 100  
   },
-  timers: {
-    TIMER: 2, // dalam menit
-    STOPWATCH: 20, // jumlah soal untuk waktu tercepat
-    RATING_FAST_SEC: 120, // 2 menit (Flash jika <= 2 menit)
-    RATING_MEDIUM_SEC: 240 // 4 menit (Kelinci jika <= 4 menit, lebih = Kura-kura)
+  pengaturanWaktu: {
+    TIMER: 2, // Batas waktu dalam menit
+    STOPWATCH: 20, // Jumlah target soal untuk mode waktu tercepat
+    RATING_CEPAT_DETIK: 120, // 2 menit (Mendapat bintang 3 / Flash)
+    RATING_SEDANG_DETIK: 240 // 4 menit (Mendapat bintang 2 / Kelinci)
   }
 };
 
-export const getAdminConfig = () => {
+export const ambilKonfigurasiAdmin = () => {
   try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      // Merge with default to ensure all keys exist even if older version
+    const tersimpan = localStorage.getItem(KUNCI_PENYIMPANAN);
+    if (tersimpan) {
+      const hasilParse = JSON.parse(tersimpan);
+      // Menggabungkan data tersimpan dengan data bawaan agar aman jika ada update
       return {
-        classBoundaries: { ...DEFAULT_CONFIG.classBoundaries, ...(parsed.classBoundaries || {}) },
-        timers: { ...DEFAULT_CONFIG.timers, ...(parsed.timers || {}) }
+        batasAngkaKelas: { ...KONFIGURASI_BAWAAN.batasAngkaKelas, ...(hasilParse.batasAngkaKelas || {}) },
+        pengaturanWaktu: { ...KONFIGURASI_BAWAAN.pengaturanWaktu, ...(hasilParse.pengaturanWaktu || {}) }
       };
     }
   } catch (e) {
     console.error("Gagal membaca konfigurasi admin", e);
   }
-  return DEFAULT_CONFIG;
+  return KONFIGURASI_BAWAAN;
 };
 
-export const saveAdminConfig = (newConfig) => {
+export const simpanKonfigurasiAdmin = (konfigurasiBaru) => {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newConfig));
+    localStorage.setItem(KUNCI_PENYIMPANAN, JSON.stringify(konfigurasiBaru));
   } catch (e) {
     console.error("Gagal menyimpan konfigurasi admin", e);
   }

@@ -1,4 +1,4 @@
-export const TOPICS = {
+export const MATERI_PELAJARAN = {
   PENJUMLAHAN: 'Penjumlahan Dasar',
   PENGURANGAN: 'Pengurangan',
   PERKALIAN: 'Perkalian',
@@ -10,40 +10,40 @@ export const TOPICS = {
   BANGUN_DATAR: 'Bangun Datar (Luas & Keliling)'
 };
 
-export const CLASS_CONFIG = {
+export const KONFIGURASI_KELAS = {
   1: { 
     label: 'Kelas 1', 
-    max: 20, 
-    topics: [TOPICS.PENJUMLAHAN, TOPICS.PENGURANGAN] 
+    maksimal: 20, 
+    materi: [MATERI_PELAJARAN.PENJUMLAHAN, MATERI_PELAJARAN.PENGURANGAN] 
   },
   2: { 
     label: 'Kelas 2', 
-    max: 100, 
-    topics: [TOPICS.PENJUMLAHAN, TOPICS.PENGURANGAN, TOPICS.PERKALIAN] 
+    maksimal: 100, 
+    materi: [MATERI_PELAJARAN.PENJUMLAHAN, MATERI_PELAJARAN.PENGURANGAN, MATERI_PELAJARAN.PERKALIAN] 
   },
   3: { 
     label: 'Kelas 3', 
-    max: 1000, 
-    topics: [TOPICS.PENJUMLAHAN, TOPICS.PENGURANGAN, TOPICS.PERKALIAN, TOPICS.PEMBAGIAN] 
+    maksimal: 1000, 
+    materi: [MATERI_PELAJARAN.PENJUMLAHAN, MATERI_PELAJARAN.PENGURANGAN, MATERI_PELAJARAN.PERKALIAN, MATERI_PELAJARAN.PEMBAGIAN] 
   },
   4: { 
     label: 'Kelas 4', 
-    max: 50, 
-    topics: [TOPICS.PECAHAN, TOPICS.DESIMAL] 
+    maksimal: 50, 
+    materi: [MATERI_PELAJARAN.PECAHAN, MATERI_PELAJARAN.DESIMAL] 
   },
   5: { 
     label: 'Kelas 5', 
-    max: 500, 
-    topics: [TOPICS.CAMPURAN, TOPICS.POSITIF_NEGATIF, TOPICS.BANGUN_DATAR] 
+    maksimal: 500, 
+    materi: [MATERI_PELAJARAN.CAMPURAN, MATERI_PELAJARAN.POSITIF_NEGATIF, MATERI_PELAJARAN.BANGUN_DATAR] 
   },
   6: { 
     label: 'Kelas 6', 
-    max: 1000, 
-    topics: [TOPICS.CAMPURAN, TOPICS.POSITIF_NEGATIF, TOPICS.BANGUN_DATAR] 
+    maksimal: 1000, 
+    materi: [MATERI_PELAJARAN.CAMPURAN, MATERI_PELAJARAN.POSITIF_NEGATIF, MATERI_PELAJARAN.BANGUN_DATAR] 
   },
 };
 
-export const GAME_MODES = {
-  TIME_ATTACK: 'Time Attack (2 Menit)',
-  STOPWATCH: 'Stopwatch (20 Soal Terbaik)'
+export const MODE_PERMAINAN_GAME = {
+  BATAS_WAKTU: 'Batas Waktu (2 Menit)',
+  WAKTU_TERCEPAT: 'Waktu Tercepat (20 Soal Terbaik)'
 };

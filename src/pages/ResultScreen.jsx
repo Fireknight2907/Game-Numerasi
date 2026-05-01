@@ -4,11 +4,11 @@ import flash from '../assets/flash.png';
 import kelinciImg from '../assets/kelinci.png';
 import kuraKuraImg from '../assets/kura_kura.png';
 import hooraySound from '../assets/hooray.mp3';
-import { getAdminConfig } from '../utils/adminConfig';
+import { ambilKonfigurasiAdmin } from '../utils/adminConfig';
 
 function ResultScreen({ result, onPlayAgain }) {
   const { correctAnswers, totalQuestions, timeSpent, mode } = result;
-  const adminConfig = getAdminConfig();
+  const adminConfig = ambilKonfigurasiAdmin();
 
   useEffect(() => {
     const bgm = document.getElementById('bgm');
@@ -39,8 +39,8 @@ function ResultScreen({ result, onPlayAgain }) {
           imageFlash = kuraKuraImg;
       }
   } else {
-      const fastSec = adminConfig.timers?.RATING_FAST_SEC || 120;
-      const mediumSec = adminConfig.timers?.RATING_MEDIUM_SEC || 240;
+      const fastSec = adminConfig.pengaturanWaktu?.RATING_CEPAT_DETIK || 120;
+      const mediumSec = adminConfig.pengaturanWaktu?.RATING_SEDANG_DETIK || 240;
 
       if (timeSpent <= fastSec) {
           animal = 'Flash'; 
