@@ -339,13 +339,18 @@ function MainMenu({ onStart }) {
               ))
             }
 
-            {screen === 'MODE_SELECT' &&
-              [
+            {screen === 'MODE_SELECT' && (() => {
+              const timerVal = ambilKonfigurasiAdmin().pengaturanWaktu?.TIMER || 2;
+              const m = Math.floor(timerVal);
+              const s = Math.round((timerVal % 1) * 60);
+              const timerText = m > 0 && s > 0 ? `${m} MENIT ${s} DETIK` : m > 0 ? `${m} MENIT` : `${s} DETIK`;
+              
+              return [
                 {
                   id: EnumModePermainan.TIMER,
                   titleLine1: 'BATAS',
                   titleLine2: 'WAKTU',
-                  desc: ['JAWAB SOAL DALAM', `WAKTU ${ambilKonfigurasiAdmin().pengaturanWaktu?.TIMER || 2} MENIT`]
+                  desc: ['JAWAB SOAL DALAM', `WAKTU ${timerText}`]
                 },
                 {
                   id: EnumModePermainan.STOPWATCH,
@@ -378,8 +383,8 @@ function MainMenu({ onStart }) {
                     </div>
                   </button>
                 );
-              })
-            }
+              });
+            })()}
 
           </div>
 

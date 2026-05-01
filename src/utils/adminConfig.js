@@ -1,6 +1,6 @@
 const KUNCI_PENYIMPANAN = 'NUMERASI_ADMIN_CONFIG';
 
-// Kita sesuaikan angka bawaannya dengan aturan laporan skripsimu
+
 const KONFIGURASI_BAWAAN = {
   batasAngkaKelas: {
     1: 10,
