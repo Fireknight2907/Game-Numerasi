@@ -465,7 +465,7 @@ function MainMenu({ onStart }) {
 
               {/* Kelas Boundaries */}
               <div className="flex flex-col gap-3">
-                <h3 className="font-extrabold text-xl text-center bg-gray-300 py-2 rounded-xl mb-2 border-2 border-black">BATAS ANGKA KELAS</h3>
+                <h3 className="font-extrabold text-lg text-center bg-[#fcd144] py-2 px-4 rounded-xl mb-2 border-2 border-black shadow-[0_3px_0_#000]">BATAS ANGKA KELAS</h3>
                 {[1, 2, 3, 4, 5, 6].map(k => (
                   <div key={k} className="flex justify-between items-center bg-white px-4 py-2 rounded-xl border-2 border-gray-400 shadow-sm">
                     <span className="font-bold text-lg">Kelas {k}</span>
@@ -490,75 +490,133 @@ function MainMenu({ onStart }) {
               </div>
 
               {/* Game Settings */}
-              <div className="flex flex-col gap-3">
-                <h3 className="font-extrabold text-xl text-center bg-gray-300 py-2 rounded-xl mb-2 border-2 border-black">MODE PERMAINAN</h3>
-
-                <div className="flex flex-col bg-white p-4 rounded-xl border-2 border-gray-400 shadow-sm">
-                  <span className="font-bold text-lg mb-2">Batas Waktu (Menit)</span>
-                  <p className="text-sm text-gray-600 mb-3 leading-tight">Pengaturan untuk Mode Batas Waktu. Boleh pakai desimal (misal 1.5 untuk 1 Menit 30 Detik).</p>
-                  <input
-                    type="number"
-                    step="0.1"
-                    min="0.1"
-                    value={adminCfg.pengaturanWaktu?.TIMER || ''}
-                    onChange={(e) => {
-                      const val = parseFloat(e.target.value) || 0;
-                      setAdminCfg(prev => ({
-                        ...prev,
-                        pengaturanWaktu: { ...prev.pengaturanWaktu, TIMER: val }
-                      }));
-                    }}
-                    className="w-full px-4 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-2xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400 mb-4"
-                  />
-
-                  <span className="font-bold text-lg mb-2">Batas Soal (Waktu Tercepat)</span>
-                  <p className="text-sm text-gray-600 mb-3 leading-tight">Pengaturan untuk Mode Waktu Tercepat (berapa banyak soal yang harus diselesaikan secapat mungkin).</p>
-                  <input
-                    type="number"
-                    min="1"
-                    value={adminCfg.pengaturanWaktu?.STOPWATCH || ''}
-                    onChange={(e) => {
-                      const val = parseInt(e.target.value) || 0;
-                      setAdminCfg(prev => ({
-                        ...prev,
-                        pengaturanWaktu: { ...prev.pengaturanWaktu, STOPWATCH: val }
-                      }));
-                    }}
-                    className="w-full px-4 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-2xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400 mb-4"
-                  />
-
-                  <span className="font-bold text-lg mb-2">Batas Waktu Flash Cepat Animasi (Detik)</span>
-                  <p className="text-sm text-gray-600 mb-3 leading-tight">Jika siswa menyelesaikan Waktu Tercepat dalam jumlah detik di bawah batas ini, akan muncul piala "Flash" (Default: 120 detik / 2 menit).</p>
-                  <input
-                    type="number"
-                    min="1"
-                    value={adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK || ''}
-                    onChange={(e) => {
-                      const val = parseInt(e.target.value) || 0;
-                      setAdminCfg(prev => ({
-                        ...prev,
-                        pengaturanWaktu: { ...prev.pengaturanWaktu, RATING_CEPAT_DETIK: val }
-                      }));
-                    }}
-                    className="w-full px-4 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-2xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400 mb-4"
-                  />
-
-                  <span className="font-bold text-lg mb-2">Batas Rata-Rata Animasi (Detik)</span>
-                  <p className="text-sm text-gray-600 mb-3 leading-tight">Jika di bawah batas ini akan diberi label Kelinci, jika di atas batas ini akan diberi Kura-Kura (Default: 240 detik / 4 menit).</p>
-                  <input
-                    type="number"
-                    min="1"
-                    value={adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK || ''}
-                    onChange={(e) => {
-                      const val = parseInt(e.target.value) || 0;
-                      setAdminCfg(prev => ({
-                        ...prev,
-                        pengaturanWaktu: { ...prev.pengaturanWaktu, RATING_SEDANG_DETIK: val }
-                      }));
-                    }}
-                    className="w-full px-4 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-2xl bg-[#b3bce6] focus:outline-none focus:border-yellow-400"
-                  />
+              <div className="flex flex-col gap-4">
+                
+                {/* PENGATURAN BATAS WAKTU */}
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-extrabold text-lg text-center bg-[#fcd144] py-2 px-4 rounded-xl border-2 border-black shadow-[0_3px_0_#000]">PENGATURAN BATAS WAKTU</h3>
+                  <div className="flex flex-col bg-white p-4 rounded-xl border-2 border-gray-400 shadow-sm gap-4">
+                    <p className="text-sm font-bold text-black leading-tight">Pada mode ini, pemain berlomba mengumpulkan skor sebanyak-banyaknya dalam batas waktu yang ditentukan.</p>
+                    
+                    <div className="flex flex-col gap-1">
+                      <span className="font-extrabold text-md">Batas Waktu Keseluruhan</span>
+                      <div className="flex items-center gap-2 mt-1">
+                        <input
+                          type="number" min="0"
+                          value={Math.floor(adminCfg.pengaturanWaktu?.TIMER ?? 2) || ''}
+                          onChange={(e) => {
+                            const m = parseInt(e.target.value) || 0;
+                            const s = Math.round(((adminCfg.pengaturanWaktu?.TIMER ?? 2) % 1) * 60) || 0;
+                            setAdminCfg(prev => ({...prev, pengaturanWaktu: {...prev.pengaturanWaktu, TIMER: m + (s/60)}}));
+                          }}
+                          className="w-16 px-2 py-1 border-2 border-blue-400 rounded-lg text-center font-bold text-lg bg-[#b3bce6] focus:outline-none"
+                        />
+                        <span className="font-bold text-sm">Menit</span>
+                        <input
+                          type="number" min="0" max="59"
+                          value={Math.round(((adminCfg.pengaturanWaktu?.TIMER ?? 2) % 1) * 60) || ''}
+                          onChange={(e) => {
+                            const s = parseInt(e.target.value) || 0;
+                            const m = Math.floor(adminCfg.pengaturanWaktu?.TIMER ?? 2);
+                            setAdminCfg(prev => ({...prev, pengaturanWaktu: {...prev.pengaturanWaktu, TIMER: m + (s/60)}}));
+                          }}
+                          className="w-16 px-2 py-1 border-2 border-blue-400 rounded-lg text-center font-bold text-lg bg-[#b3bce6] focus:outline-none"
+                        />
+                        <span className="font-bold text-sm">Detik</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* PENGATURAN WAKTU TERCEPAT */}
+                <div className="flex flex-col gap-2 mt-2">
+                  <h3 className="font-extrabold text-lg text-center bg-[#fcd144] py-2 px-4 rounded-xl border-2 border-black shadow-[0_3px_0_#000]">PENGATURAN WAKTU TERCEPAT</h3>
+                  <div className="flex flex-col bg-white p-4 rounded-xl border-2 border-gray-400 shadow-sm gap-4">
+                    <p className="text-sm font-bold text-black leading-tight">Pada mode ini, pemain berlomba menyelesaikan sejumlah soal secepat mungkin untuk mendapatkan rating karakter (Flash, Kelinci, Kura-kura).</p>
+                    
+                    <div className="flex flex-col gap-1">
+                      <span className="font-extrabold text-md">Batas Jumlah Soal</span>
+                      <p className="text-xs text-gray-600 leading-tight">Jumlah target soal yang harus diselesaikan secepat mungkin.</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <input
+                          type="number" min="1"
+                          value={adminCfg.pengaturanWaktu?.STOPWATCH || ''}
+                          onChange={(e) => {
+                            const val = parseInt(e.target.value) || 0;
+                            setAdminCfg(prev => ({...prev, pengaturanWaktu: {...prev.pengaturanWaktu, STOPWATCH: val}}));
+                          }}
+                          className="w-full px-2 py-2 border-2 border-blue-400 rounded-lg text-center font-bold text-xl bg-[#b3bce6] focus:outline-none"
+                        />
+                        <span className="font-bold text-sm whitespace-nowrap">Soal</span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <span className="font-extrabold text-md">Target Waktu (Bintang 3 / Flash)</span>
+                      <p className="text-xs text-gray-600 leading-tight">Waktu pengerjaan: 00:00 - {String(Math.floor((adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK ?? 120)/60)).padStart(2,'0')}:{String((adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK ?? 120)%60).padStart(2,'0')}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <input
+                          type="number" min="0"
+                          value={Math.floor((adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK ?? 120) / 60) || ''}
+                          onChange={(e) => {
+                            const m = parseInt(e.target.value) || 0;
+                            const s = (adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK ?? 120) % 60;
+                            setAdminCfg(prev => ({...prev, pengaturanWaktu: {...prev.pengaturanWaktu, RATING_CEPAT_DETIK: (m*60)+s}}));
+                          }}
+                          className="w-16 px-2 py-1 border-2 border-blue-400 rounded-lg text-center font-bold text-lg bg-[#b3bce6] focus:outline-none"
+                        />
+                        <span className="font-bold text-sm">Menit</span>
+                        <input
+                          type="number" min="0" max="59"
+                          value={(adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK ?? 120) % 60 || ''}
+                          onChange={(e) => {
+                            const s = parseInt(e.target.value) || 0;
+                            const m = Math.floor((adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK ?? 120) / 60);
+                            setAdminCfg(prev => ({...prev, pengaturanWaktu: {...prev.pengaturanWaktu, RATING_CEPAT_DETIK: (m*60)+s}}));
+                          }}
+                          className="w-16 px-2 py-1 border-2 border-blue-400 rounded-lg text-center font-bold text-lg bg-[#b3bce6] focus:outline-none"
+                        />
+                        <span className="font-bold text-sm">Detik</span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <span className="font-extrabold text-md">Target Waktu (Bintang 2 / Kelinci)</span>
+                      <p className="text-xs text-gray-600 leading-tight">Waktu pengerjaan: {String(Math.floor((adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK ?? 120)/60)).padStart(2,'0')}:{String((adminCfg.pengaturanWaktu?.RATING_CEPAT_DETIK ?? 120)%60).padStart(2,'0')} - {String(Math.floor((adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK ?? 240)/60)).padStart(2,'0')}:{String((adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK ?? 240)%60).padStart(2,'0')}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <input
+                          type="number" min="0"
+                          value={Math.floor((adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK ?? 240) / 60) || ''}
+                          onChange={(e) => {
+                            const m = parseInt(e.target.value) || 0;
+                            const s = (adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK ?? 240) % 60;
+                            setAdminCfg(prev => ({...prev, pengaturanWaktu: {...prev.pengaturanWaktu, RATING_SEDANG_DETIK: (m*60)+s}}));
+                          }}
+                          className="w-16 px-2 py-1 border-2 border-blue-400 rounded-lg text-center font-bold text-lg bg-[#b3bce6] focus:outline-none"
+                        />
+                        <span className="font-bold text-sm">Menit</span>
+                        <input
+                          type="number" min="0" max="59"
+                          value={(adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK ?? 240) % 60 || ''}
+                          onChange={(e) => {
+                            const s = parseInt(e.target.value) || 0;
+                            const m = Math.floor((adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK ?? 240) / 60);
+                            setAdminCfg(prev => ({...prev, pengaturanWaktu: {...prev.pengaturanWaktu, RATING_SEDANG_DETIK: (m*60)+s}}));
+                          }}
+                          className="w-16 px-2 py-1 border-2 border-blue-400 rounded-lg text-center font-bold text-lg bg-[#b3bce6] focus:outline-none"
+                        />
+                        <span className="font-bold text-sm">Detik</span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <span className="font-extrabold text-md">Target Waktu (Bintang 1 / Kura-kura)</span>
+                      <p className="text-xs text-black font-bold leading-tight">Waktu pengerjaan: &gt; {String(Math.floor((adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK ?? 240)/60)).padStart(2,'0')}:{String((adminCfg.pengaturanWaktu?.RATING_SEDANG_DETIK ?? 240)%60).padStart(2,'0')}</p>
+                    </div>
+
+                  </div>
+                </div>
+
               </div>
 
             </div>

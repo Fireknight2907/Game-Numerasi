@@ -3,12 +3,12 @@ const KUNCI_PENYIMPANAN = 'NUMERASI_ADMIN_CONFIG';
 // Kita sesuaikan angka bawaannya dengan aturan laporan skripsimu
 const KONFIGURASI_BAWAAN = {
   batasAngkaKelas: {
-    1: 50,  
-    2: 50,  
-    3: 100, 
-    4: 100, 
-    5: 100, 
-    6: 100  
+    1: 10,
+    2: 30,
+    3: 50,
+    4: 100,
+    5: 100,
+    6: 100
   },
   pengaturanWaktu: {
     TIMER: 2, // Batas waktu dalam menit
