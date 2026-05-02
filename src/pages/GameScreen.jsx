@@ -12,7 +12,7 @@ function GameScreen({ config, onEnd, onCancel }) {
 
     const isTimeAttack = config.mode === EnumModePermainan.TIMER;
     const adminConfig = ambilKonfigurasiAdmin();
-    const timerLimit = (adminConfig.pengaturanWaktu?.TIMER || 2) * 60;
+    const timerLimit = Math.round((adminConfig.pengaturanWaktu?.TIMER || 2) * 60);
     const TOTAL_STOPWATCH_Q = adminConfig.pengaturanWaktu?.STOPWATCH || 20;
 
     const [currentQ, setCurrentQ] = useState(null);
@@ -200,8 +200,9 @@ function GameScreen({ config, onEnd, onCancel }) {
     if (!currentQ) return null;
 
     const formatTime = (t) => {
-        const m = Math.floor(t / 60).toString().padStart(2, '0');
-        const s = (t % 60).toString().padStart(2, '0');
+        const roundedT = Math.round(t);
+        const m = Math.floor(roundedT / 60).toString().padStart(2, '0');
+        const s = (roundedT % 60).toString().padStart(2, '0');
         return `${m}:${s}`;
     };
 

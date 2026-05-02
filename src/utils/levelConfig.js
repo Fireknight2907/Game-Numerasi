@@ -1,49 +1,32 @@
-export const MATERI_PELAJARAN = {
-  PENJUMLAHAN: 'Penjumlahan Dasar',
-  PENGURANGAN: 'Pengurangan',
-  PERKALIAN: 'Perkalian',
-  PEMBAGIAN: 'Pembagian',
-  PECAHAN: 'Pecahan',
-  DESIMAL: 'Bilangan Desimal',
-  CAMPURAN: 'Operasi Campuran',
-  POSITIF_NEGATIF: 'Positif & Negatif',
-  BANGUN_DATAR: 'Bangun Datar (Luas & Keliling)'
-};
+import { EnumOperasi, EnumModePermainan } from '../models/Enums';
 
+// KONFIGURASI_KELAS sekarang murni cuma mengatur Label dan Topik Materi saja.
+// Urusan batas angka (maksimal) sudah dipindah sepenuhnya ke adminConfig.js
 export const KONFIGURASI_KELAS = {
   1: { 
     label: 'Kelas 1', 
-    maksimal: 20, 
-    materi: [MATERI_PELAJARAN.PENJUMLAHAN, MATERI_PELAJARAN.PENGURANGAN] 
+    materi: [EnumOperasi.PENJUMLAHAN, EnumOperasi.PENGURANGAN] 
   },
   2: { 
     label: 'Kelas 2', 
-    maksimal: 100, 
-    materi: [MATERI_PELAJARAN.PENJUMLAHAN, MATERI_PELAJARAN.PENGURANGAN, MATERI_PELAJARAN.PERKALIAN] 
+    materi: [EnumOperasi.PENJUMLAHAN, EnumOperasi.PENGURANGAN, EnumOperasi.PERKALIAN] 
   },
   3: { 
     label: 'Kelas 3', 
-    maksimal: 1000, 
-    materi: [MATERI_PELAJARAN.PENJUMLAHAN, MATERI_PELAJARAN.PENGURANGAN, MATERI_PELAJARAN.PERKALIAN, MATERI_PELAJARAN.PEMBAGIAN] 
+    materi: [EnumOperasi.PENJUMLAHAN, EnumOperasi.PENGURANGAN, EnumOperasi.PERKALIAN, EnumOperasi.PEMBAGIAN] 
   },
   4: { 
     label: 'Kelas 4', 
-    maksimal: 50, 
-    materi: [MATERI_PELAJARAN.PECAHAN, MATERI_PELAJARAN.DESIMAL] 
+    materi: [EnumOperasi.PECAHAN, EnumOperasi.DESIMAL] 
   },
   5: { 
     label: 'Kelas 5', 
-    maksimal: 500, 
-    materi: [MATERI_PELAJARAN.CAMPURAN, MATERI_PELAJARAN.POSITIF_NEGATIF, MATERI_PELAJARAN.BANGUN_DATAR] 
+    materi: [EnumOperasi.CAMPURAN, EnumOperasi.POSITIF_NEGATIF, EnumOperasi.BANGUN_DATAR] 
   },
   6: { 
     label: 'Kelas 6', 
-    maksimal: 1000, 
-    materi: [MATERI_PELAJARAN.CAMPURAN, MATERI_PELAJARAN.POSITIF_NEGATIF, MATERI_PELAJARAN.BANGUN_DATAR] 
+    materi: [EnumOperasi.CAMPURAN, EnumOperasi.POSITIF_NEGATIF, EnumOperasi.BANGUN_DATAR] 
   },
 };
 
-export const MODE_PERMAINAN_GAME = {
-  BATAS_WAKTU: 'Batas Waktu (2 Menit)',
-  WAKTU_TERCEPAT: 'Waktu Tercepat (20 Soal Terbaik)'
-};
+export const MODE_PERMAINAN_GAME = EnumModePermainan;

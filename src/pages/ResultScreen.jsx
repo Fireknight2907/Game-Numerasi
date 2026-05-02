@@ -55,8 +55,9 @@ function ResultScreen({ result, onPlayAgain }) {
   }
 
   const formatTime = (t) => {
-      const m = Math.floor(t / 60).toString().padStart(2, '0');
-      const s = (t % 60).toString().padStart(2, '0');
+      const roundedT = Math.round(t);
+      const m = Math.floor(roundedT / 60).toString().padStart(2, '0');
+      const s = (roundedT % 60).toString().padStart(2, '0');
       return `${m}:${s}`;
   };
 
