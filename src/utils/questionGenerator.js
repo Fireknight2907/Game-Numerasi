@@ -164,11 +164,10 @@ export const checkAnswer = (objekSoal, inputPengguna) => {
       inputAtas = parseInt(bagian[0], 10);
       inputBawah = parseInt(bagian[1], 10);
     } else {
-      // Bisa jadi mereka isi num saja
+      
       inputAtas = parseFloat(inputStr);
       if (inputStr.includes('.')) {
-        // jika desimal diijinkan untuk pecahan? Prompt: "Pecahan bisa dijawab tidak simple form 4/40"
-        // Desimal tidak lazim untuk Pecahan UI kids, tapi fallback
+      
         return Math.abs(inputAtas - (objekSoal.jawaban.atas / objekSoal.jawaban.bawah)) < 0.01;
       }
       inputBawah = 1;

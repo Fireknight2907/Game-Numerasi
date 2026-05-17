@@ -50,7 +50,7 @@ function MainMenu({ onStart }) {
       setAdminError('');
       setAdminUname('');
       setAdminPass('');
-      // Reload config just in case
+      // Ambil konfigurasi terbaru
       setAdminCfg(ambilKonfigurasiAdmin());
       navigateTo('ADMIN_PANEL');
     } else {
@@ -179,8 +179,8 @@ function MainMenu({ onStart }) {
 
             {/* LOGO */}
             <div className="flex justify-between items-center w-full px-4 sm:px-12 mt-5">
-              <img src={logoDela} className="w-16 sm:w-20 md:w-22 lg:w-30 object-contain" />
-              <img src={logoSD} className="w-20 sm:w-24 md:w-32 lg:w-40 object-contain" />
+              <img src={logoDela} className="h-12 sm:h-14 md:h-18 lg:h-20 w-auto object-contain" />
+              <img src={logoSD} className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain" />
             </div>
 
             {/* TITLE */}
@@ -441,7 +441,7 @@ function MainMenu({ onStart }) {
               placeholder="Password"
               value={adminPass}
               onChange={(e) => setAdminPass(e.target.value)}
-              // enable pressing enter to logic
+              // Fungsi tombol enter untuk login
               onKeyDown={(e) => e.key === 'Enter' && handleAdminLogin()}
               className="w-full mb-2 px-4 py-3 rounded-xl border-4 border-white shadow-inner text-xl font-bold bg-[#b3bce6] placeholder-gray-600 focus:outline-none focus:border-yellow-400 transition"
             />

@@ -1,7 +1,7 @@
 export class Soal {
     constructor(idPermainan = '') {
         if (new.target === Soal) {
-            throw new TypeError("Abstract class 'Soal' cannot be instantiated directly.");
+            throw new TypeError("Abstract class bermasalah.");
         }
         this.idSoal = 'SOAL_' + Math.floor(Math.random() * 100000);
         this.idPermainan = idPermainan;
@@ -10,7 +10,7 @@ export class Soal {
     }
 
     buatAcak(aturan, topik) {
-        throw new Error("Method 'buatAcak()' must be implemented.");
+        throw new Error("Method 'buatAcak()' Harus diimplementasi.");
     }
 
     cekJawaban(jawabanSiswa) {

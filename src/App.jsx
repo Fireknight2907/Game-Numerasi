@@ -5,11 +5,11 @@ import ResultScreen from './pages/ResultScreen';
 import bgMusic from './assets/acb.mp3';
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('MAIN_MENU'); // MAIN_MENU, GAME, RESULT
+  const [currentScreen, setCurrentScreen] = useState('MAIN_MENU');
   const [gameConfig, setGameConfig] = useState(null);
   const [gameResult, setGameResult] = useState(null);
 
-  // Fungsi untuk memicu putaran musik pada interaksi pertama (untuk mengatasi blokir autoplay Chrome)
+  // Putar musik background
   useEffect(() => {
     const playAudio = () => {
       const audioEl = document.getElementById('bgm');

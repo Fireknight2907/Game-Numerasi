@@ -1,7 +1,5 @@
 import { EnumOperasi, EnumModePermainan } from '../models/Enums';
 
-// KONFIGURASI_KELAS sekarang murni cuma mengatur Label dan Topik Materi saja.
-// Urusan batas angka (maksimal) sudah dipindah sepenuhnya ke adminConfig.js
 export const KONFIGURASI_KELAS = {
   1: { 
     label: 'Kelas 1', 

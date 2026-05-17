@@ -33,10 +33,10 @@ export class SoalAritmatika extends Soal {
                 break;
             case EnumOperasi.POSITIF_NEGATIF:
                 op = ['+', '-'][getRandomInt(0, 1)];
-                aturan.izinkanNegatif = true;  // force negatives
+                aturan.izinkanNegatif = true;
                 break;
             default:
-                // fallback if ARITMATIKA base is given
+                
                 const ops = ['+', '-'];
                 if (klsl >= 2) ops.push('×');
                 if (klsl >= 3) ops.push('÷');
@@ -49,7 +49,7 @@ export class SoalAritmatika extends Soal {
             const A = getRandomInt(1, 20);
             const type = getRandomInt(0, 3);
             
-            // Logika Matematika sesuai kaidah: Kali / Bagi lebih dulu sebelum Tambah / Kurang
+            // Hitung kali atau bagi terlebih dahulu
             if (type === 0) {
                 this.teksSoal = `${A} + ${B} × ${C}`;
                 this.kunciJawaban = (A + (B * C)).toString();
@@ -57,7 +57,6 @@ export class SoalAritmatika extends Soal {
                 this.teksSoal = `${B} × ${C} - ${A}`;
                 this.kunciJawaban = ((B * C) - A).toString();
             } else if (type === 2) {
-                // Pastikan pembagian bulat tidak bersisa
                 const divisor = getRandomInt(2, 10);
                 const hasilBagi = getRandomInt(2, 10);
                 const dividend = divisor * hasilBagi;
@@ -67,7 +66,7 @@ export class SoalAritmatika extends Soal {
                 const divisor = getRandomInt(2, 10);
                 const hasilBagi = getRandomInt(2, 10);
                 const dividend = divisor * hasilBagi;
-                let numA = getRandomInt(1, hasilBagi); // Agar tidak negatif jika diset pengurang
+                let numA = getRandomInt(1, hasilBagi);
                 this.teksSoal = `${dividend} ÷ ${divisor} - ${numA}`;
                 this.kunciJawaban = (hasilBagi - numA).toString();
             }

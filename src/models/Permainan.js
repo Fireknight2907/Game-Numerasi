@@ -40,7 +40,7 @@ export class Permainan {
         } else if (topik === EnumOperasi.BANGUN_DATAR) {
             soalBaru = new SoalBangunDatar(this.idPermainan);
         } else {
-            // Aritmatika handles the rest (Penjumlahan, Desimal, dll)
+            // Buat soal aritmatika
             soalBaru = new SoalAritmatika(this.idPermainan);
         }
 

@@ -13,8 +13,8 @@ const KONFIGURASI_BAWAAN = {
   pengaturanWaktu: {
     TIMER: 2, // Batas waktu dalam menit
     STOPWATCH: 20, // Jumlah target soal untuk mode waktu tercepat
-    RATING_CEPAT_DETIK: 120, // 2 menit (Mendapat bintang 3 / Flash)
-    RATING_SEDANG_DETIK: 240 // 4 menit (Mendapat bintang 2 / Kelinci)
+    RATING_CEPAT_DETIK: 120, // 2 menit (Mendapat bintang Flash)
+    RATING_SEDANG_DETIK: 240 // 4 menit (Mendapat bintang Kelinci)
   }
 };
 
@@ -23,7 +23,7 @@ export const ambilKonfigurasiAdmin = () => {
     const tersimpan = localStorage.getItem(KUNCI_PENYIMPANAN);
     if (tersimpan) {
       const hasilParse = JSON.parse(tersimpan);
-      // Menggabungkan data tersimpan dengan data bawaan agar aman jika ada update
+      // Gabungkan dengan konfigurasi default
       return {
         batasAngkaKelas: { ...KONFIGURASI_BAWAAN.batasAngkaKelas, ...(hasilParse.batasAngkaKelas || {}) },
         pengaturanWaktu: { ...KONFIGURASI_BAWAAN.pengaturanWaktu, ...(hasilParse.pengaturanWaktu || {}) }
@@ -40,5 +40,13 @@ export const simpanKonfigurasiAdmin = (konfigurasiBaru) => {
     localStorage.setItem(KUNCI_PENYIMPANAN, JSON.stringify(konfigurasiBaru));
   } catch (e) {
     console.error("Gagal menyimpan konfigurasi admin", e);
+  }
+};
+
+export const resetKonfigurasiAdmin = () => {
+  try {
+    localStorage.removeItem(KUNCI_PENYIMPANAN);
+  } catch (e) {
+    console.error("Gagal mereset konfigurasi admin", e);
   }
 };
